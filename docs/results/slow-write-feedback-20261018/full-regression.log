@@ -1,0 +1,1456 @@
+go version go1.25.6 linux/amd64
+=== RUN   TestASCIIEqualFold
+=== RUN   TestASCIIEqualFold/empty
+=== RUN   TestASCIIEqualFold/simple_match
+=== RUN   TestASCIIEqualFold/same_string
+=== RUN   TestASCIIEqualFold/Unicode_Kelvin_symbol
+--- PASS: TestASCIIEqualFold (0.00s)
+    --- PASS: TestASCIIEqualFold/empty (0.00s)
+    --- PASS: TestASCIIEqualFold/simple_match (0.00s)
+    --- PASS: TestASCIIEqualFold/same_string (0.00s)
+    --- PASS: TestASCIIEqualFold/Unicode_Kelvin_symbol (0.00s)
+=== RUN   TestIsASCIIPrint
+=== RUN   TestIsASCIIPrint/empty
+=== RUN   TestIsASCIIPrint/ASCII_low
+=== RUN   TestIsASCIIPrint/ASCII_high
+=== RUN   TestIsASCIIPrint/ASCII_low_non-print
+=== RUN   TestIsASCIIPrint/Ascii_high_non-print
+=== RUN   TestIsASCIIPrint/Unicode_letter
+=== RUN   TestIsASCIIPrint/Unicode_emoji
+--- PASS: TestIsASCIIPrint (0.00s)
+    --- PASS: TestIsASCIIPrint/empty (0.00s)
+    --- PASS: TestIsASCIIPrint/ASCII_low (0.00s)
+    --- PASS: TestIsASCIIPrint/ASCII_high (0.00s)
+    --- PASS: TestIsASCIIPrint/ASCII_low_non-print (0.00s)
+    --- PASS: TestIsASCIIPrint/Ascii_high_non-print (0.00s)
+    --- PASS: TestIsASCIIPrint/Unicode_letter (0.00s)
+    --- PASS: TestIsASCIIPrint/Unicode_emoji (0.00s)
+=== RUN   TestIsBadCipherBad
+--- PASS: TestIsBadCipherBad (0.00s)
+=== RUN   TestIsBadCipherGood
+--- PASS: TestIsBadCipherGood (0.00s)
+=== RUN   TestTestClientConn
+--- PASS: TestTestClientConn (0.00s)
+=== RUN   TestConfigServerSettings
+--- PASS: TestConfigServerSettings (0.00s)
+=== RUN   TestConfigTransportSettings
+--- PASS: TestConfigTransportSettings (0.00s)
+=== RUN   TestConfigPingTimeoutServer
+    http2_test.go:67: 2000/01/01 00:00:05 timeout waiting for PING response
+--- PASS: TestConfigPingTimeoutServer (0.01s)
+=== RUN   TestConfigPingTimeoutTransport
+--- PASS: TestConfigPingTimeoutTransport (0.00s)
+=== RUN   TestDataBufferAllocation
+=== RUN   TestDataBufferAllocation/ReadSize=1
+=== RUN   TestDataBufferAllocation/ReadSize=2
+=== RUN   TestDataBufferAllocation/ReadSize=1024
+=== RUN   TestDataBufferAllocation/ReadSize=32768
+--- PASS: TestDataBufferAllocation (0.01s)
+    --- PASS: TestDataBufferAllocation/ReadSize=1 (0.00s)
+    --- PASS: TestDataBufferAllocation/ReadSize=2 (0.00s)
+    --- PASS: TestDataBufferAllocation/ReadSize=1024 (0.00s)
+    --- PASS: TestDataBufferAllocation/ReadSize=32768 (0.00s)
+=== RUN   TestDataBufferAllocationWithExpected
+=== RUN   TestDataBufferAllocationWithExpected/ReadSize=1
+=== RUN   TestDataBufferAllocationWithExpected/ReadSize=2
+=== RUN   TestDataBufferAllocationWithExpected/ReadSize=1024
+=== RUN   TestDataBufferAllocationWithExpected/ReadSize=32768
+--- PASS: TestDataBufferAllocationWithExpected (0.00s)
+    --- PASS: TestDataBufferAllocationWithExpected/ReadSize=1 (0.00s)
+    --- PASS: TestDataBufferAllocationWithExpected/ReadSize=2 (0.00s)
+    --- PASS: TestDataBufferAllocationWithExpected/ReadSize=1024 (0.00s)
+    --- PASS: TestDataBufferAllocationWithExpected/ReadSize=32768 (0.00s)
+=== RUN   TestDataBufferWriteAfterPartialRead
+=== RUN   TestDataBufferWriteAfterPartialRead/ReadSize=1
+=== RUN   TestDataBufferWriteAfterPartialRead/ReadSize=2
+=== RUN   TestDataBufferWriteAfterPartialRead/ReadSize=1024
+=== RUN   TestDataBufferWriteAfterPartialRead/ReadSize=32768
+--- PASS: TestDataBufferWriteAfterPartialRead (0.00s)
+    --- PASS: TestDataBufferWriteAfterPartialRead/ReadSize=1 (0.00s)
+    --- PASS: TestDataBufferWriteAfterPartialRead/ReadSize=2 (0.00s)
+    --- PASS: TestDataBufferWriteAfterPartialRead/ReadSize=1024 (0.00s)
+    --- PASS: TestDataBufferWriteAfterPartialRead/ReadSize=32768 (0.00s)
+=== RUN   TestErrCodeString
+--- PASS: TestErrCodeString (0.00s)
+=== RUN   TestInFlowTake
+--- PASS: TestInFlowTake (0.00s)
+=== RUN   TestInflowAddSmall
+--- PASS: TestInflowAddSmall (0.00s)
+=== RUN   TestInflowAdd
+--- PASS: TestInflowAdd (0.00s)
+=== RUN   TestTakeInflows
+--- PASS: TestTakeInflows (0.00s)
+=== RUN   TestOutFlow
+--- PASS: TestOutFlow (0.00s)
+=== RUN   TestOutFlowAdd
+--- PASS: TestOutFlowAdd (0.00s)
+=== RUN   TestOutFlowAddOverflow
+--- PASS: TestOutFlowAddOverflow (0.00s)
+=== RUN   TestFrameSizes
+--- PASS: TestFrameSizes (0.00s)
+=== RUN   TestFrameTypeString
+--- PASS: TestFrameTypeString (0.00s)
+=== RUN   TestWriteRST
+--- PASS: TestWriteRST (0.00s)
+=== RUN   TestWriteData
+--- PASS: TestWriteData (0.00s)
+=== RUN   TestWriteDataPadded
+--- PASS: TestWriteDataPadded (0.00s)
+=== RUN   TestWriteHeaders
+--- PASS: TestWriteHeaders (0.00s)
+=== RUN   TestWriteInvalidStreamDep
+--- PASS: TestWriteInvalidStreamDep (0.00s)
+=== RUN   TestWriteContinuation
+--- PASS: TestWriteContinuation (0.00s)
+=== RUN   TestParseRFC9218Priority
+--- PASS: TestParseRFC9218Priority (0.00s)
+=== RUN   TestWritePriority
+--- PASS: TestWritePriority (0.00s)
+=== RUN   TestWritePriorityUpdate
+--- PASS: TestWritePriorityUpdate (0.00s)
+=== RUN   TestWriteSettings
+--- PASS: TestWriteSettings (0.00s)
+=== RUN   TestWriteSettingsAck
+--- PASS: TestWriteSettingsAck (0.00s)
+=== RUN   TestWriteWindowUpdate
+--- PASS: TestWriteWindowUpdate (0.00s)
+=== RUN   TestWritePing
+--- PASS: TestWritePing (0.00s)
+=== RUN   TestWritePingAck
+--- PASS: TestWritePingAck (0.00s)
+=== RUN   TestReadFrameHeader
+--- PASS: TestReadFrameHeader (0.00s)
+=== RUN   TestReadWriteFrameHeader
+--- PASS: TestReadWriteFrameHeader (0.16s)
+=== RUN   TestWriteTooLargeFrame
+--- PASS: TestWriteTooLargeFrame (0.02s)
+=== RUN   TestWriteGoAway
+--- PASS: TestWriteGoAway (0.00s)
+=== RUN   TestWritePushPromise
+--- PASS: TestWritePushPromise (0.00s)
+=== RUN   TestReadFrameOrder
+--- PASS: TestReadFrameOrder (0.00s)
+=== RUN   TestMetaFrameHeader
+--- PASS: TestMetaFrameHeader (0.00s)
+=== RUN   TestSetReuseFrames
+--- PASS: TestSetReuseFrames (0.00s)
+=== RUN   TestSetReuseFramesMoreThanOnce
+--- PASS: TestSetReuseFramesMoreThanOnce (0.00s)
+=== RUN   TestNoSetReuseFrames
+--- PASS: TestNoSetReuseFrames (0.00s)
+=== RUN   TestSettingsDuplicates
+--- PASS: TestSettingsDuplicates (0.00s)
+=== RUN   TestTypeFrameParser
+--- PASS: TestTypeFrameParser (0.00s)
+=== RUN   TestReadFrameHeaderAndBody
+--- PASS: TestReadFrameHeaderAndBody (0.00s)
+=== RUN   TestReadFrameHeaderFrameTooLarge
+--- PASS: TestReadFrameHeaderFrameTooLarge (0.00s)
+=== RUN   TestReadFrameHeaderBadFrameOrder
+--- PASS: TestReadFrameHeaderBadFrameOrder (0.00s)
+=== RUN   TestReadFrameForHeaderUnexpectedEOF
+--- PASS: TestReadFrameForHeaderUnexpectedEOF (0.00s)
+=== RUN   TestGoroutineLock
+--- PASS: TestGoroutineLock (0.00s)
+=== RUN   TestSettingString
+--- PASS: TestSettingString (0.00s)
+=== RUN   TestSorterPoolAllocs
+--- PASS: TestSorterPoolAllocs (0.00s)
+=== RUN   TestConfigureServerIdleTimeout_Go18
+--- PASS: TestConfigureServerIdleTimeout_Go18 (0.00s)
+=== RUN   TestNoUnicodeStrings
+--- PASS: TestNoUnicodeStrings (0.10s)
+=== RUN   TestPipeClose
+--- PASS: TestPipeClose (0.00s)
+=== RUN   TestPipeDoneChan
+--- PASS: TestPipeDoneChan (0.00s)
+=== RUN   TestPipeDoneChan_ErrFirst
+--- PASS: TestPipeDoneChan_ErrFirst (0.00s)
+=== RUN   TestPipeDoneChan_Break
+--- PASS: TestPipeDoneChan_Break (0.00s)
+=== RUN   TestPipeDoneChan_Break_ErrFirst
+--- PASS: TestPipeDoneChan_Break_ErrFirst (0.00s)
+=== RUN   TestPipeCloseWithError
+--- PASS: TestPipeCloseWithError (0.00s)
+=== RUN   TestPipeBreakWithError
+--- PASS: TestPipeBreakWithError (0.00s)
+=== RUN   TestProxyDataArrivingAfterSelectionTLS
+=== RUN   TestProxyDataArrivingAfterSelectionTLS/quantum_0
+    proxy_late_data_tls_test.go:230: verified TLS; six open streams; late 578B payload complete after 65536 bulk bytes; all stream SHA256 and END_STREAM verified; no latency claim
+=== RUN   TestProxyDataArrivingAfterSelectionTLS/quantum_16384
+    proxy_late_data_tls_test.go:230: verified TLS; six open streams; late 578B payload complete after 16384 bulk bytes; all stream SHA256 and END_STREAM verified; no latency claim
+--- PASS: TestProxyDataArrivingAfterSelectionTLS (0.17s)
+    --- PASS: TestProxyDataArrivingAfterSelectionTLS/quantum_0 (0.09s)
+    --- PASS: TestProxyDataArrivingAfterSelectionTLS/quantum_16384 (0.07s)
+=== RUN   TestProxyDataQuantumTLSCancelAndConnectionClose
+    proxy_quantum_tls_test.go:172: verified TLS1.3; enabled 16KiB policy; partial bulk cancel preserves exact same-outer small stream; outer close releases pending bulk
+--- PASS: TestProxyDataQuantumTLSCancelAndConnectionClose (0.44s)
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_at_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful data completion triggered pressure=true; six open streams; late 578B complete after 4096 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_flush_at_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful flush completion triggered pressure=true; six open streams; late 578B complete after 4096 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_below_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful data completion triggered pressure=false; six open streams; late 578B complete after 65536 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+--- PASS: TestProxySlowWriteFeedbackLateDATARealTLS (0.27s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_at_threshold (0.09s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_flush_at_threshold (0.10s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_below_threshold (0.09s)
+=== RUN   TestProxyPingACKBudgetStartsAfterFlush
+=== RUN   TestProxyPingACKBudgetStartsAfterFlush/legacy
+    http2_test.go:67: 2000/01/01 00:00:03 timeout waiting for PING response
+=== RUN   TestProxyPingACKBudgetStartsAfterFlush/after_flush
+    http2_test.go:67: 2000/01/01 00:00:08 timeout waiting for PING response
+--- PASS: TestProxyPingACKBudgetStartsAfterFlush (0.00s)
+    --- PASS: TestProxyPingACKBudgetStartsAfterFlush/legacy (0.00s)
+    --- PASS: TestProxyPingACKBudgetStartsAfterFlush/after_flush (0.00s)
+=== RUN   TestProxyPingBlockedWriterStillBounded
+--- PASS: TestProxyPingBlockedWriterStillBounded (0.00s)
+=== RUN   TestProxyObservationFlowAndPrivacy
+--- PASS: TestProxyObservationFlowAndPrivacy (0.00s)
+=== RUN   TestProxyObservationEOFPreservesLastFrameAge
+--- PASS: TestProxyObservationEOFPreservesLastFrameAge (0.00s)
+=== RUN   TestServer_Push_Success
+--- PASS: TestServer_Push_Success (0.01s)
+=== RUN   TestServer_Push_SuccessNoRace
+--- PASS: TestServer_Push_SuccessNoRace (0.00s)
+=== RUN   TestServer_Push_RejectRecursivePush
+--- PASS: TestServer_Push_RejectRecursivePush (0.00s)
+=== RUN   TestServer_Push_RejectIfDisabled
+--- PASS: TestServer_Push_RejectIfDisabled (0.00s)
+=== RUN   TestServer_Push_RejectWhenNoConcurrentStreams
+--- PASS: TestServer_Push_RejectWhenNoConcurrentStreams (0.00s)
+=== RUN   TestServer_Push_RejectWrongScheme
+--- PASS: TestServer_Push_RejectWrongScheme (0.00s)
+=== RUN   TestServer_Push_RejectMissingHost
+--- PASS: TestServer_Push_RejectMissingHost (0.00s)
+=== RUN   TestServer_Push_RejectRelativePath
+--- PASS: TestServer_Push_RejectRelativePath (0.00s)
+=== RUN   TestServer_Push_RejectForbiddenMethod
+--- PASS: TestServer_Push_RejectForbiddenMethod (0.00s)
+=== RUN   TestServer_Push_RejectForbiddenHeader
+--- PASS: TestServer_Push_RejectForbiddenHeader (0.00s)
+=== RUN   TestServer_Push_StateTransitions
+--- PASS: TestServer_Push_StateTransitions (0.00s)
+=== RUN   TestServer_Push_RejectAfterGoAway
+--- PASS: TestServer_Push_RejectAfterGoAway (0.00s)
+=== RUN   TestServer_Push_Underflow
+--- PASS: TestServer_Push_Underflow (0.01s)
+=== RUN   TestProxyReadObservationIndependentPhases
+--- PASS: TestProxyReadObservationIndependentPhases (0.00s)
+=== RUN   TestProxyReadObservationDisabled
+--- PASS: TestProxyReadObservationDisabled (0.00s)
+=== RUN   TestProxyReadObservationHookIndependentOfEnableGate
+--- PASS: TestProxyReadObservationHookIndependentOfEnableGate (0.00s)
+=== RUN   TestServer
+--- PASS: TestServer (0.00s)
+=== RUN   TestServer_Request_Get
+--- PASS: TestServer_Request_Get (0.00s)
+=== RUN   TestServer_Request_Get_PathSlashes
+--- PASS: TestServer_Request_Get_PathSlashes (0.00s)
+=== RUN   TestServer_Request_Post_NoContentLength_EndStream
+--- PASS: TestServer_Request_Post_NoContentLength_EndStream (0.00s)
+=== RUN   TestServer_Request_Post_Body_ImmediateEOF
+--- PASS: TestServer_Request_Post_Body_ImmediateEOF (0.00s)
+=== RUN   TestServer_Request_Post_Body_OneData
+--- PASS: TestServer_Request_Post_Body_OneData (0.05s)
+=== RUN   TestServer_Request_Post_Body_TwoData
+--- PASS: TestServer_Request_Post_Body_TwoData (0.01s)
+=== RUN   TestServer_Request_Post_Body_ContentLength_Correct
+--- PASS: TestServer_Request_Post_Body_ContentLength_Correct (0.00s)
+=== RUN   TestServer_Request_Post_Body_ContentLength_TooLarge
+--- PASS: TestServer_Request_Post_Body_ContentLength_TooLarge (0.00s)
+=== RUN   TestServer_Request_Post_Body_ContentLength_TooSmall
+--- PASS: TestServer_Request_Post_Body_ContentLength_TooSmall (0.00s)
+=== RUN   TestServer_Request_Get_Host
+--- PASS: TestServer_Request_Get_Host (0.00s)
+=== RUN   TestServer_Request_Get_Authority
+--- PASS: TestServer_Request_Get_Authority (0.00s)
+=== RUN   TestServer_Request_WithContinuation
+--- PASS: TestServer_Request_WithContinuation (0.00s)
+=== RUN   TestServer_Request_CookieConcat
+--- PASS: TestServer_Request_CookieConcat (0.00s)
+=== RUN   TestServer_Request_Reject_CapitalHeader
+--- PASS: TestServer_Request_Reject_CapitalHeader (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldNameColon
+--- PASS: TestServer_Request_Reject_HeaderFieldNameColon (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldNameNULL
+--- PASS: TestServer_Request_Reject_HeaderFieldNameNULL (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldNameEmpty
+--- PASS: TestServer_Request_Reject_HeaderFieldNameEmpty (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldValueNewline
+--- PASS: TestServer_Request_Reject_HeaderFieldValueNewline (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldValueCR
+--- PASS: TestServer_Request_Reject_HeaderFieldValueCR (0.00s)
+=== RUN   TestServer_Request_Reject_HeaderFieldValueDEL
+--- PASS: TestServer_Request_Reject_HeaderFieldValueDEL (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_Missing_method
+--- PASS: TestServer_Request_Reject_Pseudo_Missing_method (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_ExactlyOne
+--- PASS: TestServer_Request_Reject_Pseudo_ExactlyOne (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_AfterRegular
+--- PASS: TestServer_Request_Reject_Pseudo_AfterRegular (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_Missing_path
+--- PASS: TestServer_Request_Reject_Pseudo_Missing_path (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_Missing_scheme
+--- PASS: TestServer_Request_Reject_Pseudo_Missing_scheme (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_scheme_invalid
+--- PASS: TestServer_Request_Reject_Pseudo_scheme_invalid (0.00s)
+=== RUN   TestServer_Request_Reject_Pseudo_Unknown
+--- PASS: TestServer_Request_Reject_Pseudo_Unknown (0.00s)
+=== RUN   TestServer_Request_Reject_Authority_Userinfo
+--- PASS: TestServer_Request_Reject_Authority_Userinfo (0.00s)
+=== RUN   TestRejectFrameOnIdle_WindowUpdate
+--- PASS: TestRejectFrameOnIdle_WindowUpdate (0.00s)
+=== RUN   TestRejectFrameOnIdle_Data
+--- PASS: TestRejectFrameOnIdle_Data (0.00s)
+=== RUN   TestRejectFrameOnIdle_RSTStream
+--- PASS: TestRejectFrameOnIdle_RSTStream (0.00s)
+=== RUN   TestServer_Request_Connect
+--- PASS: TestServer_Request_Connect (0.00s)
+=== RUN   TestServer_Request_Connect_InvalidPath
+--- PASS: TestServer_Request_Connect_InvalidPath (0.00s)
+=== RUN   TestServer_Request_Connect_InvalidScheme
+--- PASS: TestServer_Request_Connect_InvalidScheme (0.00s)
+=== RUN   TestServer_Ping
+--- PASS: TestServer_Ping (0.00s)
+=== RUN   TestServer_MaxQueuedControlFrames
+--- PASS: TestServer_MaxQueuedControlFrames (0.09s)
+=== RUN   TestServer_RejectsLargeFrames
+--- PASS: TestServer_RejectsLargeFrames (0.01s)
+=== RUN   TestServer_Handler_Sends_WindowUpdate
+--- PASS: TestServer_Handler_Sends_WindowUpdate (0.02s)
+=== RUN   TestServer_Handler_Sends_WindowUpdate_Padding
+--- PASS: TestServer_Handler_Sends_WindowUpdate_Padding (0.00s)
+=== RUN   TestServer_Send_GoAway_After_Bogus_WindowUpdate
+--- PASS: TestServer_Send_GoAway_After_Bogus_WindowUpdate (0.00s)
+=== RUN   TestServer_Send_RstStream_After_Bogus_WindowUpdate
+--- PASS: TestServer_Send_RstStream_After_Bogus_WindowUpdate (0.00s)
+=== RUN   TestServer_RSTStream_Unblocks_Read
+--- PASS: TestServer_RSTStream_Unblocks_Read (0.00s)
+=== RUN   TestServer_RSTStream_Unblocks_Header_Write
+--- PASS: TestServer_RSTStream_Unblocks_Header_Write (0.20s)
+=== RUN   TestServer_DeadConn_Unblocks_Read
+--- PASS: TestServer_DeadConn_Unblocks_Read (0.00s)
+=== RUN   TestServer_CloseNotify_After_RSTStream
+--- PASS: TestServer_CloseNotify_After_RSTStream (0.00s)
+=== RUN   TestServer_CloseNotify_After_ConnClose
+--- PASS: TestServer_CloseNotify_After_ConnClose (0.00s)
+=== RUN   TestServer_CloseNotify_After_StreamError
+--- PASS: TestServer_CloseNotify_After_StreamError (0.00s)
+=== RUN   TestServer_StateTransitions
+--- PASS: TestServer_StateTransitions (0.00s)
+=== RUN   TestServer_Rejects_HeadersNoEnd_Then_Headers
+--- PASS: TestServer_Rejects_HeadersNoEnd_Then_Headers (0.00s)
+=== RUN   TestServer_Rejects_HeadersNoEnd_Then_Ping
+--- PASS: TestServer_Rejects_HeadersNoEnd_Then_Ping (0.00s)
+=== RUN   TestServer_Rejects_HeadersEnd_Then_Continuation
+--- PASS: TestServer_Rejects_HeadersEnd_Then_Continuation (0.00s)
+=== RUN   TestServer_Rejects_HeadersNoEnd_Then_ContinuationWrongStream
+--- PASS: TestServer_Rejects_HeadersNoEnd_Then_ContinuationWrongStream (0.00s)
+=== RUN   TestServer_Rejects_Headers0
+--- PASS: TestServer_Rejects_Headers0 (0.00s)
+=== RUN   TestServer_Rejects_Continuation0
+--- PASS: TestServer_Rejects_Continuation0 (0.00s)
+=== RUN   TestServer_Rejects_Priority0
+--- PASS: TestServer_Rejects_Priority0 (0.00s)
+=== RUN   TestServer_Rejects_PriorityUpdate0
+--- PASS: TestServer_Rejects_PriorityUpdate0 (0.00s)
+=== RUN   TestServer_Rejects_PriorityUpdateUnparsable
+--- PASS: TestServer_Rejects_PriorityUpdateUnparsable (0.00s)
+=== RUN   TestServer_Rejects_HeadersSelfDependence
+--- PASS: TestServer_Rejects_HeadersSelfDependence (0.00s)
+=== RUN   TestServer_Rejects_PrioritySelfDependence
+--- PASS: TestServer_Rejects_PrioritySelfDependence (0.00s)
+=== RUN   TestServer_Rejects_PushPromise
+--- PASS: TestServer_Rejects_PushPromise (0.00s)
+=== RUN   TestServer_Response_NoData
+--- PASS: TestServer_Response_NoData (0.00s)
+=== RUN   TestServer_Response_NoData_Header_FooBar
+--- PASS: TestServer_Response_NoData_Header_FooBar (0.00s)
+=== RUN   TestServerIgnoresContentLengthSignWhenWritingChunks
+--- PASS: TestServerIgnoresContentLengthSignWhenWritingChunks (0.01s)
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests/proper_content-length
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests/ignore_cl_with_plus_sign
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests/ignore_cl_with_minus_sign
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests/max_int64,_for_safe_uint64->int64_conversion
+=== RUN   TestServerRejectsContentLengthWithSignNewRequests/overflows_int64,_so_ignored
+--- PASS: TestServerRejectsContentLengthWithSignNewRequests (0.07s)
+    --- PASS: TestServerRejectsContentLengthWithSignNewRequests/proper_content-length (0.00s)
+    --- PASS: TestServerRejectsContentLengthWithSignNewRequests/ignore_cl_with_plus_sign (0.00s)
+    --- PASS: TestServerRejectsContentLengthWithSignNewRequests/ignore_cl_with_minus_sign (0.01s)
+    --- PASS: TestServerRejectsContentLengthWithSignNewRequests/max_int64,_for_safe_uint64->int64_conversion (0.00s)
+    --- PASS: TestServerRejectsContentLengthWithSignNewRequests/overflows_int64,_so_ignored (0.00s)
+=== RUN   TestServer_Response_Data_Sniff_DoesntOverride
+--- PASS: TestServer_Response_Data_Sniff_DoesntOverride (0.00s)
+=== RUN   TestServer_Response_TransferEncoding_chunked
+--- PASS: TestServer_Response_TransferEncoding_chunked (0.00s)
+=== RUN   TestServer_Response_Data_IgnoreHeaderAfterWrite_After
+--- PASS: TestServer_Response_Data_IgnoreHeaderAfterWrite_After (0.00s)
+=== RUN   TestServer_Response_Data_IgnoreHeaderAfterWrite_Overwrite
+--- PASS: TestServer_Response_Data_IgnoreHeaderAfterWrite_Overwrite (0.00s)
+=== RUN   TestServer_Response_Data_SniffLenType
+--- PASS: TestServer_Response_Data_SniffLenType (0.00s)
+=== RUN   TestServer_Response_Header_Flush_MidWrite
+--- PASS: TestServer_Response_Header_Flush_MidWrite (0.00s)
+=== RUN   TestServer_Response_LargeWrite
+--- PASS: TestServer_Response_LargeWrite (0.01s)
+=== RUN   TestServer_Response_LargeWrite_FlowControlled
+--- PASS: TestServer_Response_LargeWrite_FlowControlled (0.01s)
+=== RUN   TestServer_Response_RST_Unblocks_LargeWrite
+--- PASS: TestServer_Response_RST_Unblocks_LargeWrite (0.00s)
+=== RUN   TestServer_Response_Empty_Data_Not_FlowControlled
+--- PASS: TestServer_Response_Empty_Data_Not_FlowControlled (0.00s)
+=== RUN   TestServer_Response_Automatic100Continue
+--- PASS: TestServer_Response_Automatic100Continue (0.00s)
+=== RUN   TestServer_HandlerWriteErrorOnDisconnect
+--- PASS: TestServer_HandlerWriteErrorOnDisconnect (0.01s)
+=== RUN   TestServer_Rejects_Too_Many_Streams
+--- PASS: TestServer_Rejects_Too_Many_Streams (0.22s)
+=== RUN   TestServer_Response_ManyHeaders_With_Continuation
+--- PASS: TestServer_Response_ManyHeaders_With_Continuation (0.11s)
+=== RUN   TestServer_NoCrash_HandlerClose_Then_ClientClose
+--- PASS: TestServer_NoCrash_HandlerClose_Then_ClientClose (0.01s)
+=== RUN   TestServer_Rejects_TLS10
+--- PASS: TestServer_Rejects_TLS10 (0.00s)
+=== RUN   TestServer_Rejects_TLS11
+--- PASS: TestServer_Rejects_TLS11 (0.00s)
+=== RUN   TestServer_Rejects_TLSBadCipher
+--- PASS: TestServer_Rejects_TLSBadCipher (0.00s)
+=== RUN   TestServer_Advertises_Common_Cipher
+--- PASS: TestServer_Advertises_Common_Cipher (0.07s)
+=== RUN   TestServer_MaxDecoderHeaderTableSize
+--- PASS: TestServer_MaxDecoderHeaderTableSize (0.00s)
+=== RUN   TestServer_MaxEncoderHeaderTableSize
+--- PASS: TestServer_MaxEncoderHeaderTableSize (0.00s)
+=== RUN   TestServerDoS_MaxHeaderListSize
+--- PASS: TestServerDoS_MaxHeaderListSize (0.09s)
+=== RUN   TestServer_Response_Stream_With_Missing_Trailer
+--- PASS: TestServer_Response_Stream_With_Missing_Trailer (0.00s)
+=== RUN   TestCompressionErrorOnWrite
+--- PASS: TestCompressionErrorOnWrite (0.00s)
+=== RUN   TestCompressionErrorOnClose
+--- PASS: TestCompressionErrorOnClose (0.00s)
+=== RUN   TestServerReadsTrailers
+--- PASS: TestServerReadsTrailers (0.01s)
+=== RUN   TestServerWritesTrailers_WithFlush
+--- PASS: TestServerWritesTrailers_WithFlush (0.00s)
+=== RUN   TestServerWritesTrailers_WithoutFlush
+--- PASS: TestServerWritesTrailers_WithoutFlush (0.00s)
+=== RUN   TestServerWritesUndeclaredTrailers
+--- PASS: TestServerWritesUndeclaredTrailers (0.04s)
+=== RUN   TestServerDoesntWriteInvalidHeaders
+--- PASS: TestServerDoesntWriteInvalidHeaders (0.00s)
+=== RUN   TestIssue53
+    http2_test.go:67: 2000/01/01 00:00:00 http2: server connection error from 127.0.0.1:49706: connection error: PROTOCOL_ERROR
+--- PASS: TestIssue53 (0.00s)
+=== RUN   TestServeConnNilOpts
+--- PASS: TestServeConnNilOpts (0.00s)
+=== RUN   TestConfigureServer
+--- PASS: TestConfigureServer (0.00s)
+=== RUN   TestServerNoAutoContentLengthOnHead
+--- PASS: TestServerNoAutoContentLengthOnHead (0.00s)
+=== RUN   TestServerNoDuplicateContentType
+--- PASS: TestServerNoDuplicateContentType (0.00s)
+=== RUN   TestServerContentLengthCanBeDisabled
+--- PASS: TestServerContentLengthCanBeDisabled (0.00s)
+=== RUN   TestServerHandleCustomConn
+--- PASS: TestServerHandleCustomConn (0.00s)
+=== RUN   TestServer_Rejects_ConnHeaders
+--- PASS: TestServer_Rejects_ConnHeaders (0.00s)
+=== RUN   TestCheckValidHTTP2Request
+--- PASS: TestCheckValidHTTP2Request (0.00s)
+=== RUN   TestExpect100ContinueAfterHandlerWrites
+--- PASS: TestExpect100ContinueAfterHandlerWrites (0.08s)
+=== RUN   TestUnreadFlowControlReturned_Server
+=== RUN   TestUnreadFlowControlReturned_Server/body-open
+=== RUN   TestUnreadFlowControlReturned_Server/body-closed
+=== RUN   TestUnreadFlowControlReturned_Server/read-1-byte-and-close
+--- PASS: TestUnreadFlowControlReturned_Server (1.85s)
+    --- PASS: TestUnreadFlowControlReturned_Server/body-open (0.58s)
+    --- PASS: TestUnreadFlowControlReturned_Server/body-closed (0.59s)
+    --- PASS: TestUnreadFlowControlReturned_Server/read-1-byte-and-close (0.67s)
+=== RUN   TestServerReturnsStreamAndConnFlowControlOnBodyClose
+--- PASS: TestServerReturnsStreamAndConnFlowControlOnBodyClose (0.00s)
+=== RUN   TestServerIdleTimeout
+--- PASS: TestServerIdleTimeout (0.00s)
+=== RUN   TestServerIdleTimeout_AfterRequest
+--- PASS: TestServerIdleTimeout_AfterRequest (0.00s)
+=== RUN   TestRequestBodyReadCloseRace
+--- PASS: TestRequestBodyReadCloseRace (0.42s)
+=== RUN   TestIssue20704Race
+--- PASS: TestIssue20704Race (39.82s)
+=== RUN   TestServer_Rejects_TooSmall
+--- PASS: TestServer_Rejects_TooSmall (0.00s)
+=== RUN   TestServerHandlerConnectionClose
+--- PASS: TestServerHandlerConnectionClose (0.00s)
+=== RUN   TestServer_Headers_HalfCloseRemote
+--- PASS: TestServer_Headers_HalfCloseRemote (0.00s)
+=== RUN   TestServerGracefulShutdown
+--- PASS: TestServerGracefulShutdown (0.00s)
+=== RUN   TestContentEncodingNoSniffing
+=== RUN   TestContentEncodingNoSniffing/gzip_content-encoding,_gzipped
+    server_test.go:4354: https://127.0.0.1:34205: Content-Encoding: application/gzip
+    server_test.go:4368: https://127.0.0.1:34205: Content-Type: 
+=== RUN   TestContentEncodingNoSniffing/zlib_content-encoding,_zlibbed
+    server_test.go:4354: https://127.0.0.1:46491: Content-Encoding: application/zlib
+    server_test.go:4368: https://127.0.0.1:46491: Content-Type: 
+=== RUN   TestContentEncodingNoSniffing/no_content-encoding
+    server_test.go:4354: https://127.0.0.1:46253: Content-Encoding: 
+    server_test.go:4368: https://127.0.0.1:46253: Content-Type: application/x-gzip
+=== RUN   TestContentEncodingNoSniffing/phony_content-encoding
+    server_test.go:4354: https://127.0.0.1:42097: Content-Encoding: foo/bar
+    server_test.go:4368: https://127.0.0.1:42097: Content-Type: 
+=== RUN   TestContentEncodingNoSniffing/empty_but_set_content-encoding
+    server_test.go:4354: https://127.0.0.1:34933: Content-Encoding: 
+    server_test.go:4368: https://127.0.0.1:34933: Content-Type: audio/mpeg
+--- PASS: TestContentEncodingNoSniffing (0.17s)
+    --- PASS: TestContentEncodingNoSniffing/gzip_content-encoding,_gzipped (0.01s)
+    --- PASS: TestContentEncodingNoSniffing/zlib_content-encoding,_zlibbed (0.01s)
+    --- PASS: TestContentEncodingNoSniffing/no_content-encoding (0.01s)
+    --- PASS: TestContentEncodingNoSniffing/phony_content-encoding (0.01s)
+    --- PASS: TestContentEncodingNoSniffing/empty_but_set_content-encoding (0.07s)
+=== RUN   TestServerWindowUpdateOnBodyClose
+--- PASS: TestServerWindowUpdateOnBodyClose (0.00s)
+=== RUN   TestNoErrorLoggedOnPostAfterGOAWAY
+--- PASS: TestNoErrorLoggedOnPostAfterGOAWAY (0.00s)
+=== RUN   TestServerSendsProcessing
+--- PASS: TestServerSendsProcessing (0.00s)
+=== RUN   TestServerSendsEarlyHints
+--- PASS: TestServerSendsEarlyHints (0.00s)
+=== RUN   TestProtocolErrorAfterGoAway
+--- PASS: TestProtocolErrorAfterGoAway (0.00s)
+=== RUN   TestServerInitialFlowControlWindow
+=== RUN   TestServerInitialFlowControlWindow/65535
+=== RUN   TestServerInitialFlowControlWindow/524288
+=== RUN   TestServerInitialFlowControlWindow/2097152
+=== RUN   TestServerInitialFlowControlWindow/131070
+--- PASS: TestServerInitialFlowControlWindow (0.01s)
+    --- PASS: TestServerInitialFlowControlWindow/65535 (0.00s)
+    --- PASS: TestServerInitialFlowControlWindow/524288 (0.00s)
+    --- PASS: TestServerInitialFlowControlWindow/2097152 (0.00s)
+    --- PASS: TestServerInitialFlowControlWindow/131070 (0.00s)
+=== RUN   TestCanonicalHeaderCacheGrowth
+--- PASS: TestCanonicalHeaderCacheGrowth (0.10s)
+=== RUN   TestServerWriteDoesNotRetainBufferAfterReturn
+--- PASS: TestServerWriteDoesNotRetainBufferAfterReturn (0.21s)
+=== RUN   TestServerWriteDoesNotRetainBufferAfterServerClose
+--- PASS: TestServerWriteDoesNotRetainBufferAfterServerClose (0.07s)
+=== RUN   TestServerMaxHandlerGoroutines
+    http2_test.go:67: 2000/01/01 00:00:00 http2: server connection error from 127.0.0.1:8000: connection error: ENHANCE_YOUR_CALM
+--- PASS: TestServerMaxHandlerGoroutines (0.02s)
+=== RUN   TestServerContinuationFlood
+    http2_test.go:67: 2000/01/01 00:00:00 http2: server connection error from 127.0.0.1:8000: connection error: PROTOCOL_ERROR
+--- PASS: TestServerContinuationFlood (0.00s)
+=== RUN   TestServerContinuationAfterInvalidHeader
+    http2_test.go:67: 2000/01/01 00:00:00 http2: server connection error from 127.0.0.1:8000: connection error: PROTOCOL_ERROR
+--- PASS: TestServerContinuationAfterInvalidHeader (0.00s)
+=== RUN   TestServerUpgradeRequestPrefaceFailure
+--- PASS: TestServerUpgradeRequestPrefaceFailure (0.00s)
+=== RUN   TestServerRequestCancelOnError
+--- PASS: TestServerRequestCancelOnError (0.00s)
+=== RUN   TestServerSetReadWriteDeadlineRace
+--- PASS: TestServerSetReadWriteDeadlineRace (0.07s)
+=== RUN   TestServerWriteByteTimeout
+--- PASS: TestServerWriteByteTimeout (0.00s)
+=== RUN   TestServerPingSent
+    http2_test.go:67: 2000/01/01 00:00:30 timeout waiting for PING response
+--- PASS: TestServerPingSent (0.00s)
+=== RUN   TestServerPingResponded
+--- PASS: TestServerPingResponded (0.00s)
+=== RUN   TestServerSendDataAfterRequestBodyClose
+--- PASS: TestServerSendDataAfterRequestBodyClose (0.00s)
+=== RUN   TestServerSettingNoRFC7540Priorities
+--- PASS: TestServerSettingNoRFC7540Priorities (0.00s)
+=== RUN   TestServerSettingNoRFC7540PrioritiesInvalid
+    http2_test.go:67: 2000/01/01 00:00:00 http2: server connection error from 127.0.0.1:8000: connection error: PROTOCOL_ERROR
+--- PASS: TestServerSettingNoRFC7540PrioritiesInvalid (0.00s)
+=== RUN   TestServerRFC7540PrioritySmallPayload
+--- PASS: TestServerRFC7540PrioritySmallPayload (5.73s)
+=== RUN   TestServerRFC9218PrioritySmallPayload
+--- PASS: TestServerRFC9218PrioritySmallPayload (6.20s)
+=== RUN   TestServerRFC9218Priority
+--- PASS: TestServerRFC9218Priority (2.90s)
+=== RUN   TestServerRFC9218PriorityIgnoredWhenProxied
+--- PASS: TestServerRFC9218PriorityIgnoredWhenProxied (2.76s)
+=== RUN   TestServerRFC9218PriorityAware
+--- PASS: TestServerRFC9218PriorityAware (6.51s)
+=== RUN   TestTransportExternal
+    transport_test.go:61: skipping external network test
+--- SKIP: TestTransportExternal (0.00s)
+=== RUN   TestIdleConnTimeout
+=== RUN   TestIdleConnTimeout/NoExpiry
+=== RUN   TestIdleConnTimeout/H2TransportTimeoutExpires
+=== RUN   TestIdleConnTimeout/H1TransportTimeoutExpires
+--- PASS: TestIdleConnTimeout (0.00s)
+    --- PASS: TestIdleConnTimeout/NoExpiry (0.00s)
+    --- PASS: TestIdleConnTimeout/H2TransportTimeoutExpires (0.00s)
+    --- PASS: TestIdleConnTimeout/H1TransportTimeoutExpires (0.00s)
+=== RUN   TestTransportH2c
+--- PASS: TestTransportH2c (0.00s)
+=== RUN   TestTransport
+    transport_test.go:245: 0: Got res: &{Status:200 OK StatusCode:200 Proto:HTTP/2.0 ProtoMajor:2 ProtoMinor:0 Header:map[Content-Length:[3] Content-Type:[text/plain; charset=utf-8] Date:[Sun, 18 Oct 2026 08:56:37 GMT]] Body:{cs:0xc0000b3080} ContentLength:3 TransferEncoding:[] Close:false Uncompressed:false Trailer:map[] Request:0xc0000e0a00 TLS:0xc000232300}
+    transport_test.go:245: 1: Got res: &{Status:200 OK StatusCode:200 Proto:HTTP/2.0 ProtoMajor:2 ProtoMinor:0 Header:map[Content-Length:[3] Content-Type:[text/plain; charset=utf-8] Date:[Sun, 18 Oct 2026 08:56:37 GMT]] Body:{cs:0xc0000b3200} ContentLength:3 TransferEncoding:[] Close:false Uncompressed:false Trailer:map[] Request:0xc0000e1040 TLS:0xc000232300}
+--- PASS: TestTransport (0.01s)
+=== RUN   TestTransportFailureErrorForHTTP1Response
+=== RUN   TestTransportFailureErrorForHTTP1Response/with_default_max_frame_size
+=== RUN   TestTransportFailureErrorForHTTP1Response/with_enough_frame_size_to_start_reading
+--- PASS: TestTransportFailureErrorForHTTP1Response (0.00s)
+    --- PASS: TestTransportFailureErrorForHTTP1Response/with_default_max_frame_size (0.00s)
+    --- PASS: TestTransportFailureErrorForHTTP1Response/with_enough_frame_size_to_start_reading (0.00s)
+=== RUN   TestTransportReusesConns
+=== RUN   TestTransportReusesConns/ReuseConn
+=== RUN   TestTransportReusesConns/ReuseConn/Transport
+    transport_test.go:324: conn 127.0.0.1:59620 is now state new
+    transport_test.go:324: conn 127.0.0.1:59620 is now state active
+    transport_test.go:324: conn 127.0.0.1:59620 is now state idle
+    transport_test.go:324: conn 127.0.0.1:59620 is now state active
+    transport_test.go:324: conn 127.0.0.1:59620 is now state idle
+    transport_test.go:324: conn 127.0.0.1:59620 is now state active
+    transport_test.go:324: conn 127.0.0.1:59620 is now state idle
+    transport_test.go:324: conn 127.0.0.1:59620 is now state closed
+=== RUN   TestTransportReusesConns/ReuseConn/Client
+    transport_test.go:324: conn 127.0.0.1:60496 is now state new
+    transport_test.go:324: conn 127.0.0.1:60496 is now state active
+    transport_test.go:324: conn 127.0.0.1:60496 is now state idle
+    transport_test.go:324: conn 127.0.0.1:60496 is now state active
+    transport_test.go:324: conn 127.0.0.1:60496 is now state idle
+    transport_test.go:324: conn 127.0.0.1:60496 is now state active
+    transport_test.go:324: conn 127.0.0.1:60496 is now state idle
+    transport_test.go:324: conn 127.0.0.1:60496 is now state closed
+=== RUN   TestTransportReusesConns/RequestClose
+=== RUN   TestTransportReusesConns/RequestClose/Transport
+    transport_test.go:324: conn 127.0.0.1:51788 is now state new
+    transport_test.go:324: conn 127.0.0.1:51788 is now state active
+    transport_test.go:324: conn 127.0.0.1:51788 is now state idle
+    transport_test.go:324: conn 127.0.0.1:51788 is now state active
+    transport_test.go:324: conn 127.0.0.1:51788 is now state idle
+    transport_test.go:324: conn 127.0.0.1:53606 is now state new
+    transport_test.go:324: conn 127.0.0.1:51788 is now state closed
+    transport_test.go:324: conn 127.0.0.1:53606 is now state active
+    transport_test.go:324: conn 127.0.0.1:53606 is now state idle
+    transport_test.go:324: conn 127.0.0.1:53606 is now state active
+    transport_test.go:324: conn 127.0.0.1:53606 is now state idle
+    transport_test.go:324: conn 127.0.0.1:53606 is now state closed
+=== RUN   TestTransportReusesConns/RequestClose/Client
+    transport_test.go:324: conn 127.0.0.1:41642 is now state new
+    transport_test.go:324: conn 127.0.0.1:41642 is now state active
+    transport_test.go:324: conn 127.0.0.1:41642 is now state idle
+    transport_test.go:324: conn 127.0.0.1:41642 is now state active
+    transport_test.go:324: conn 127.0.0.1:41642 is now state idle
+    transport_test.go:324: conn 127.0.0.1:41656 is now state new
+    transport_test.go:324: conn 127.0.0.1:41642 is now state closed
+    transport_test.go:324: conn 127.0.0.1:41656 is now state active
+    transport_test.go:324: conn 127.0.0.1:41656 is now state idle
+    transport_test.go:324: conn 127.0.0.1:41656 is now state active
+    transport_test.go:324: conn 127.0.0.1:41656 is now state idle
+    transport_test.go:324: conn 127.0.0.1:41656 is now state closed
+=== RUN   TestTransportReusesConns/ConnClose
+=== RUN   TestTransportReusesConns/ConnClose/Transport
+    transport_test.go:324: conn 127.0.0.1:55776 is now state new
+    transport_test.go:324: conn 127.0.0.1:55776 is now state active
+    transport_test.go:324: conn 127.0.0.1:55776 is now state idle
+    transport_test.go:324: conn 127.0.0.1:55776 is now state active
+    transport_test.go:324: conn 127.0.0.1:55776 is now state idle
+    transport_test.go:324: conn 127.0.0.1:55790 is now state new
+    transport_test.go:324: conn 127.0.0.1:55776 is now state closed
+    transport_test.go:324: conn 127.0.0.1:55790 is now state active
+    transport_test.go:324: conn 127.0.0.1:55790 is now state idle
+    transport_test.go:324: conn 127.0.0.1:55790 is now state active
+    transport_test.go:324: conn 127.0.0.1:55790 is now state idle
+    transport_test.go:324: conn 127.0.0.1:55790 is now state closed
+=== RUN   TestTransportReusesConns/ConnClose/Client
+    transport_test.go:324: conn 127.0.0.1:43650 is now state new
+    transport_test.go:324: conn 127.0.0.1:43650 is now state active
+    transport_test.go:324: conn 127.0.0.1:43650 is now state idle
+    transport_test.go:324: conn 127.0.0.1:43650 is now state active
+    transport_test.go:324: conn 127.0.0.1:43650 is now state idle
+    transport_test.go:324: conn 127.0.0.1:43666 is now state new
+    transport_test.go:324: conn 127.0.0.1:43650 is now state closed
+    transport_test.go:324: conn 127.0.0.1:43666 is now state active
+    transport_test.go:324: conn 127.0.0.1:43666 is now state idle
+    transport_test.go:324: conn 127.0.0.1:43666 is now state active
+    transport_test.go:324: conn 127.0.0.1:43666 is now state idle
+    transport_test.go:324: conn 127.0.0.1:43666 is now state closed
+--- PASS: TestTransportReusesConns (0.30s)
+    --- PASS: TestTransportReusesConns/ReuseConn (0.03s)
+        --- PASS: TestTransportReusesConns/ReuseConn/Transport (0.02s)
+        --- PASS: TestTransportReusesConns/ReuseConn/Client (0.02s)
+    --- PASS: TestTransportReusesConns/RequestClose (0.17s)
+        --- PASS: TestTransportReusesConns/RequestClose/Transport (0.11s)
+        --- PASS: TestTransportReusesConns/RequestClose/Client (0.06s)
+    --- PASS: TestTransportReusesConns/ConnClose (0.09s)
+        --- PASS: TestTransportReusesConns/ConnClose/Transport (0.02s)
+        --- PASS: TestTransportReusesConns/ConnClose/Client (0.07s)
+=== RUN   TestTransportGetGotConnHooks_HTTP2Transport
+--- PASS: TestTransportGetGotConnHooks_HTTP2Transport (0.01s)
+=== RUN   TestTransportGetGotConnHooks_Client
+--- PASS: TestTransportGetGotConnHooks_Client (0.01s)
+=== RUN   TestTransportGroupsPendingDials
+--- PASS: TestTransportGroupsPendingDials (0.08s)
+=== RUN   TestTransportAbortClosesPipes
+--- PASS: TestTransportAbortClosesPipes (0.01s)
+=== RUN   TestTransportPath
+--- PASS: TestTransportPath (0.01s)
+=== RUN   TestActualContentLength
+--- PASS: TestActualContentLength (0.00s)
+=== RUN   TestTransportBody
+--- PASS: TestTransportBody (1.34s)
+=== RUN   TestTransportDialTLS
+--- PASS: TestTransportDialTLS (0.04s)
+=== RUN   TestConfigureTransport
+--- PASS: TestConfigureTransport (0.03s)
+=== RUN   TestTransportReqBodyAfterResponse_200
+--- PASS: TestTransportReqBodyAfterResponse_200 (0.00s)
+=== RUN   TestTransportReqBodyAfterResponse_403
+--- PASS: TestTransportReqBodyAfterResponse_403 (0.00s)
+=== RUN   TestTransportFullDuplex
+--- PASS: TestTransportFullDuplex (0.01s)
+=== RUN   TestTransportConnectRequest
+--- PASS: TestTransportConnectRequest (0.01s)
+=== RUN   TestTransportResPattern_c0h1d0t0
+--- PASS: TestTransportResPattern_c0h1d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c0h1d0t1
+--- PASS: TestTransportResPattern_c0h1d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c0h1d0t2
+--- PASS: TestTransportResPattern_c0h1d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c0h1d1t0
+--- PASS: TestTransportResPattern_c0h1d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c0h1d1t1
+--- PASS: TestTransportResPattern_c0h1d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c0h1d1t2
+--- PASS: TestTransportResPattern_c0h1d1t2 (0.02s)
+=== RUN   TestTransportResPattern_c0h2d0t0
+--- PASS: TestTransportResPattern_c0h2d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c0h2d0t1
+--- PASS: TestTransportResPattern_c0h2d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c0h2d0t2
+--- PASS: TestTransportResPattern_c0h2d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c0h2d1t0
+--- PASS: TestTransportResPattern_c0h2d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c0h2d1t1
+--- PASS: TestTransportResPattern_c0h2d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c0h2d1t2
+--- PASS: TestTransportResPattern_c0h2d1t2 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d0t0
+--- PASS: TestTransportResPattern_c1h1d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d0t1
+--- PASS: TestTransportResPattern_c1h1d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d0t2
+--- PASS: TestTransportResPattern_c1h1d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d1t0
+--- PASS: TestTransportResPattern_c1h1d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d1t1
+--- PASS: TestTransportResPattern_c1h1d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c1h1d1t2
+--- PASS: TestTransportResPattern_c1h1d1t2 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d0t0
+--- PASS: TestTransportResPattern_c1h2d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d0t1
+--- PASS: TestTransportResPattern_c1h2d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d0t2
+--- PASS: TestTransportResPattern_c1h2d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d1t0
+--- PASS: TestTransportResPattern_c1h2d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d1t1
+--- PASS: TestTransportResPattern_c1h2d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c1h2d1t2
+--- PASS: TestTransportResPattern_c1h2d1t2 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d0t0
+--- PASS: TestTransportResPattern_c2h1d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d0t1
+--- PASS: TestTransportResPattern_c2h1d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d0t2
+--- PASS: TestTransportResPattern_c2h1d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d1t0
+--- PASS: TestTransportResPattern_c2h1d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d1t1
+--- PASS: TestTransportResPattern_c2h1d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c2h1d1t2
+--- PASS: TestTransportResPattern_c2h1d1t2 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d0t0
+--- PASS: TestTransportResPattern_c2h2d0t0 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d0t1
+--- PASS: TestTransportResPattern_c2h2d0t1 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d0t2
+--- PASS: TestTransportResPattern_c2h2d0t2 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d1t0
+--- PASS: TestTransportResPattern_c2h2d1t0 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d1t1
+--- PASS: TestTransportResPattern_c2h2d1t1 (0.00s)
+=== RUN   TestTransportResPattern_c2h2d1t2
+--- PASS: TestTransportResPattern_c2h2d1t2 (0.00s)
+=== RUN   TestTransportUnknown1xx
+--- PASS: TestTransportUnknown1xx (0.00s)
+=== RUN   TestTransportReceiveUndeclaredTrailer
+--- PASS: TestTransportReceiveUndeclaredTrailer (0.00s)
+=== RUN   TestTransportInvalidTrailer_Pseudo1
+--- PASS: TestTransportInvalidTrailer_Pseudo1 (0.00s)
+=== RUN   TestTransportInvalidTrailer_Pseudo2
+--- PASS: TestTransportInvalidTrailer_Pseudo2 (0.00s)
+=== RUN   TestTransportInvalidTrailer_Capital1
+--- PASS: TestTransportInvalidTrailer_Capital1 (0.00s)
+=== RUN   TestTransportInvalidTrailer_Capital2
+--- PASS: TestTransportInvalidTrailer_Capital2 (0.00s)
+=== RUN   TestTransportInvalidTrailer_EmptyFieldName
+--- PASS: TestTransportInvalidTrailer_EmptyFieldName (0.00s)
+=== RUN   TestTransportInvalidTrailer_BinaryFieldValue
+--- PASS: TestTransportInvalidTrailer_BinaryFieldValue (0.00s)
+=== RUN   TestPadHeaders
+--- PASS: TestPadHeaders (0.01s)
+=== RUN   TestTransportChecksRequestHeaderListSize
+--- PASS: TestTransportChecksRequestHeaderListSize (0.00s)
+=== RUN   TestTransportChecksResponseHeaderListSize
+--- PASS: TestTransportChecksResponseHeaderListSize (0.01s)
+=== RUN   TestTransportCookieHeaderSplit
+--- PASS: TestTransportCookieHeaderSplit (0.00s)
+=== RUN   TestTransportBodyReadErrorType
+--- PASS: TestTransportBodyReadErrorType (0.04s)
+=== RUN   TestTransportDoubleCloseOnWriteError
+--- PASS: TestTransportDoubleCloseOnWriteError (0.02s)
+=== RUN   TestTransportDisableKeepAlives
+--- PASS: TestTransportDisableKeepAlives (0.01s)
+=== RUN   TestTransportDisableKeepAlives_Concurrency
+    transport_test.go:1799: did 1 dials, 20 requests
+--- PASS: TestTransportDisableKeepAlives_Concurrency (0.12s)
+=== RUN   TestTransportResponseHeaderTimeout_NoBody
+--- PASS: TestTransportResponseHeaderTimeout_NoBody (0.00s)
+=== RUN   TestTransportResponseHeaderTimeout_Body
+--- PASS: TestTransportResponseHeaderTimeout_Body (0.01s)
+=== RUN   TestTransportWindowUpdateBeyondLimit
+--- PASS: TestTransportWindowUpdateBeyondLimit (0.00s)
+=== RUN   TestTransportDisableCompression
+--- PASS: TestTransportDisableCompression (0.01s)
+=== RUN   TestTransportRejectsConnHeaders
+--- PASS: TestTransportRejectsConnHeaders (0.06s)
+=== RUN   TestTransportRejectsContentLengthWithSign
+=== RUN   TestTransportRejectsContentLengthWithSign/proper_content-length
+=== RUN   TestTransportRejectsContentLengthWithSign/ignore_cl_with_plus_sign
+=== RUN   TestTransportRejectsContentLengthWithSign/ignore_cl_with_minus_sign
+=== RUN   TestTransportRejectsContentLengthWithSign/max_int64,_for_safe_uint64->int64_conversion
+=== RUN   TestTransportRejectsContentLengthWithSign/overflows_int64,_so_ignored
+--- PASS: TestTransportRejectsContentLengthWithSign (0.12s)
+    --- PASS: TestTransportRejectsContentLengthWithSign/proper_content-length (0.06s)
+    --- PASS: TestTransportRejectsContentLengthWithSign/ignore_cl_with_plus_sign (0.01s)
+    --- PASS: TestTransportRejectsContentLengthWithSign/ignore_cl_with_minus_sign (0.01s)
+    --- PASS: TestTransportRejectsContentLengthWithSign/max_int64,_for_safe_uint64->int64_conversion (0.01s)
+    --- PASS: TestTransportRejectsContentLengthWithSign/overflows_int64,_so_ignored (0.01s)
+=== RUN   TestTransportFailsOnInvalidHeadersAndTrailers
+--- PASS: TestTransportFailsOnInvalidHeadersAndTrailers (0.01s)
+=== RUN   TestGzipReader_DoubleReadCrash
+--- PASS: TestGzipReader_DoubleReadCrash (0.00s)
+=== RUN   TestGzipReader_ReadAfterClose
+--- PASS: TestGzipReader_ReadAfterClose (0.00s)
+=== RUN   TestTransportNewTLSConfig
+--- PASS: TestTransportNewTLSConfig (0.00s)
+=== RUN   TestTransportReadHeadResponse
+--- PASS: TestTransportReadHeadResponse (0.00s)
+=== RUN   TestTransportReadHeadResponseWithBody
+--- PASS: TestTransportReadHeadResponseWithBody (0.00s)
+=== RUN   TestTransportStreamEndsWhileBodyIsBeingWritten
+--- PASS: TestTransportStreamEndsWhileBodyIsBeingWritten (0.00s)
+=== RUN   TestTransportFlowControl
+--- PASS: TestTransportFlowControl (0.00s)
+=== RUN   TestTransportUsesGoAwayDebugError_RoundTrip
+--- PASS: TestTransportUsesGoAwayDebugError_RoundTrip (0.00s)
+=== RUN   TestTransportUsesGoAwayDebugError_Body
+--- PASS: TestTransportUsesGoAwayDebugError_Body (0.00s)
+=== RUN   TestTransportReturnsUnusedFlowControlSingleWrite
+--- PASS: TestTransportReturnsUnusedFlowControlSingleWrite (0.00s)
+=== RUN   TestTransportReturnsUnusedFlowControlMultipleWrites
+--- PASS: TestTransportReturnsUnusedFlowControlMultipleWrites (0.00s)
+=== RUN   TestTransportAdjustsFlowControl
+--- PASS: TestTransportAdjustsFlowControl (0.00s)
+=== RUN   TestTransportReturnsDataPaddingFlowControl
+--- PASS: TestTransportReturnsDataPaddingFlowControl (0.00s)
+=== RUN   TestTransportReturnsErrorOnBadResponseHeaders
+--- PASS: TestTransportReturnsErrorOnBadResponseHeaders (0.00s)
+=== RUN   TestTransportBodyDoubleEndStream
+--- PASS: TestTransportBodyDoubleEndStream (0.01s)
+=== RUN   TestTransportRequestPathPseudo
+--- PASS: TestTransportRequestPathPseudo (0.00s)
+=== RUN   TestRoundTripDoesntConsumeRequestBodyEarly
+--- PASS: TestRoundTripDoesntConsumeRequestBodyEarly (0.00s)
+=== RUN   TestClientConnPing
+--- PASS: TestClientConnPing (0.01s)
+=== RUN   TestTransportCancelDataResponseRace
+--- PASS: TestTransportCancelDataResponseRace (0.12s)
+=== RUN   TestTransportNoRaceOnRequestObjectAfterRequestComplete
+--- PASS: TestTransportNoRaceOnRequestObjectAfterRequestComplete (0.02s)
+=== RUN   TestTransportCloseAfterLostPing
+--- PASS: TestTransportCloseAfterLostPing (0.00s)
+=== RUN   TestTransportPingWriteBlocks
+--- PASS: TestTransportPingWriteBlocks (0.00s)
+=== RUN   TestTransportPingWhenReadingMultiplePings
+--- PASS: TestTransportPingWhenReadingMultiplePings (0.00s)
+=== RUN   TestTransportPingWhenReadingPingDisabled
+--- PASS: TestTransportPingWhenReadingPingDisabled (0.00s)
+=== RUN   TestTransportRetryAfterGOAWAYNoRetry
+--- PASS: TestTransportRetryAfterGOAWAYNoRetry (0.00s)
+=== RUN   TestTransportRetryAfterGOAWAYRetry
+--- PASS: TestTransportRetryAfterGOAWAYRetry (0.00s)
+=== RUN   TestTransportRetryAfterGOAWAYSecondRequest
+--- PASS: TestTransportRetryAfterGOAWAYSecondRequest (0.00s)
+=== RUN   TestTransportRetryAfterRefusedStream
+--- PASS: TestTransportRetryAfterRefusedStream (0.00s)
+=== RUN   TestTransportRetryHasLimit
+--- PASS: TestTransportRetryHasLimit (0.00s)
+=== RUN   TestTransportResponseDataBeforeHeaders
+--- PASS: TestTransportResponseDataBeforeHeaders (0.00s)
+=== RUN   TestTransportMaxFrameReadSize
+=== RUN   TestTransportMaxFrameReadSize/64000
+=== RUN   TestTransportMaxFrameReadSize/1024
+--- PASS: TestTransportMaxFrameReadSize (0.00s)
+    --- PASS: TestTransportMaxFrameReadSize/64000 (0.00s)
+    --- PASS: TestTransportMaxFrameReadSize/1024 (0.00s)
+=== RUN   TestTransportRequestsLowServerLimit
+--- PASS: TestTransportRequestsLowServerLimit (0.01s)
+=== RUN   TestTransportRequestsStallAtServerLimit
+=== RUN   TestTransportRequestsStallAtServerLimit/Transport
+=== RUN   TestTransportRequestsStallAtServerLimit/HTTP2Config
+    transport_test.go:3509: HTTP2Config does not contain StrictMaxConcurrentRequests
+--- PASS: TestTransportRequestsStallAtServerLimit (0.00s)
+    --- PASS: TestTransportRequestsStallAtServerLimit/Transport (0.00s)
+    --- PASS: TestTransportRequestsStallAtServerLimit/HTTP2Config (0.00s)
+=== RUN   TestTransportMaxDecoderHeaderTableSize
+--- PASS: TestTransportMaxDecoderHeaderTableSize (0.00s)
+=== RUN   TestTransportMaxEncoderHeaderTableSize
+--- PASS: TestTransportMaxEncoderHeaderTableSize (0.00s)
+=== RUN   TestAuthorityAddr
+--- PASS: TestAuthorityAddr (0.00s)
+=== RUN   TestTransportAllocationsAfterResponseBodyClose
+--- PASS: TestTransportAllocationsAfterResponseBodyClose (0.00s)
+=== RUN   TestTransportNoBodyMeansNoDATA
+--- PASS: TestTransportNoBodyMeansNoDATA (0.00s)
+=== RUN   TestTransportResponseAndResetWithoutConsumingBodyRace
+--- PASS: TestTransportResponseAndResetWithoutConsumingBodyRace (0.01s)
+=== RUN   TestTransportHandlesInvalidStatuslessResponse
+--- PASS: TestTransportHandlesInvalidStatuslessResponse (0.00s)
+=== RUN   TestClientConnCloseAtHeaders
+--- PASS: TestClientConnCloseAtHeaders (0.00s)
+=== RUN   TestClientConnCloseAtBody
+--- PASS: TestClientConnCloseAtBody (0.00s)
+=== RUN   TestClientConnShutdown
+--- PASS: TestClientConnShutdown (0.00s)
+=== RUN   TestClientConnShutdownCancel
+--- PASS: TestClientConnShutdownCancel (0.00s)
+=== RUN   TestTransportUsesGetBodyWhenPresent
+--- PASS: TestTransportUsesGetBodyWhenPresent (0.00s)
+=== RUN   TestNoDialH2RoundTripperType
+--- PASS: TestNoDialH2RoundTripperType (0.00s)
+=== RUN   TestTransportBodyReadError_Immediately
+--- PASS: TestTransportBodyReadError_Immediately (0.00s)
+=== RUN   TestTransportBodyReadError_Some
+--- PASS: TestTransportBodyReadError_Some (0.00s)
+=== RUN   TestTransportBodyEagerEndStream
+--- PASS: TestTransportBodyEagerEndStream (0.00s)
+=== RUN   TestTransportBodyLargerThanSpecifiedContentLength_len3
+    http2_test.go:67: 2000/01/01 00:00:00 http: TLS handshake error from 127.0.0.1:46806: read tcp 127.0.0.1:46181->127.0.0.1:46806: use of closed network connection
+--- PASS: TestTransportBodyLargerThanSpecifiedContentLength_len3 (0.02s)
+=== RUN   TestTransportBodyLargerThanSpecifiedContentLength_len2
+    http2_test.go:67: 2000/01/01 00:00:00 http: TLS handshake error from 127.0.0.1:36284: read tcp 127.0.0.1:41725->127.0.0.1:36284: use of closed network connection
+--- PASS: TestTransportBodyLargerThanSpecifiedContentLength_len2 (0.01s)
+=== RUN   TestClientConnTooIdle
+--- PASS: TestClientConnTooIdle (0.00s)
+=== RUN   TestTransportNewClientConnCloseOnWriteError
+--- PASS: TestTransportNewClientConnCloseOnWriteError (0.00s)
+=== RUN   TestTransportRoundtripCloseOnWriteError
+--- PASS: TestTransportRoundtripCloseOnWriteError (0.00s)
+=== RUN   TestTransportBodyRewindRace
+--- PASS: TestTransportBodyRewindRace (0.49s)
+=== RUN   TestTransportServerResetStreamAtHeaders
+--- PASS: TestTransportServerResetStreamAtHeaders (0.01s)
+=== RUN   TestTransportExpectContinue
+=== RUN   TestTransportExpectContinue/read-all
+=== RUN   TestTransportExpectContinue/reject
+--- PASS: TestTransportExpectContinue (0.01s)
+    --- PASS: TestTransportExpectContinue/read-all (0.01s)
+    --- PASS: TestTransportExpectContinue/reject (0.00s)
+=== RUN   TestTransportFrameBufferReuse
+--- PASS: TestTransportFrameBufferReuse (0.15s)
+=== RUN   TestTransportBlockingRequestWrite
+=== RUN   TestTransportBlockingRequestWrite/headers
+=== RUN   TestTransportBlockingRequestWrite/body
+=== RUN   TestTransportBlockingRequestWrite/trailer
+--- PASS: TestTransportBlockingRequestWrite (0.12s)
+    --- PASS: TestTransportBlockingRequestWrite/headers (0.02s)
+    --- PASS: TestTransportBlockingRequestWrite/body (0.07s)
+    --- PASS: TestTransportBlockingRequestWrite/trailer (0.03s)
+=== RUN   TestTransportCloseRequestBody
+=== RUN   TestTransportCloseRequestBody/status=200
+=== RUN   TestTransportCloseRequestBody/status=401
+--- PASS: TestTransportCloseRequestBody (0.01s)
+    --- PASS: TestTransportCloseRequestBody/status=200 (0.00s)
+    --- PASS: TestTransportCloseRequestBody/status=401 (0.00s)
+=== RUN   TestTransportRetriesOnStreamProtocolError
+--- PASS: TestTransportRetriesOnStreamProtocolError (0.00s)
+=== RUN   TestClientConnReservations
+--- PASS: TestClientConnReservations (0.00s)
+=== RUN   TestTransportTimeoutServerHangs
+--- PASS: TestTransportTimeoutServerHangs (0.01s)
+=== RUN   TestTransportContentLengthWithoutBody
+=== RUN   TestTransportContentLengthWithoutBody/non-zero_content_length
+=== RUN   TestTransportContentLengthWithoutBody/zero_content_length
+--- PASS: TestTransportContentLengthWithoutBody (0.02s)
+    --- PASS: TestTransportContentLengthWithoutBody/non-zero_content_length (0.01s)
+    --- PASS: TestTransportContentLengthWithoutBody/zero_content_length (0.01s)
+=== RUN   TestTransportCloseResponseBodyWhileRequestBodyHangs
+--- PASS: TestTransportCloseResponseBodyWhileRequestBodyHangs (0.01s)
+=== RUN   TestTransport300ResponseBody
+--- PASS: TestTransport300ResponseBody (0.01s)
+=== RUN   TestTransportWriteByteTimeout
+--- PASS: TestTransportWriteByteTimeout (0.06s)
+=== RUN   TestTransportSlowWrites
+--- PASS: TestTransportSlowWrites (0.82s)
+=== RUN   TestTransportClosesConnAfterGoAwayNoStreams
+--- PASS: TestTransportClosesConnAfterGoAwayNoStreams (0.00s)
+=== RUN   TestTransportClosesConnAfterGoAwayLastStream
+--- PASS: TestTransportClosesConnAfterGoAwayLastStream (0.00s)
+=== RUN   TestTransportSlowClose
+--- PASS: TestTransportSlowClose (0.01s)
+=== RUN   TestTransportDialTLSContext
+    http2_test.go:67: 2026/10/18 08:56:42 http: TLS handshake error from 127.0.0.1:53430: read tcp 127.0.0.1:40205->127.0.0.1:53430: use of closed network connection
+--- PASS: TestTransportDialTLSContext (0.01s)
+=== RUN   TestDialRaceResumesDial
+    http2_test.go:67: 2026/10/18 08:56:42 http: TLS handshake error from 127.0.0.1:36844: EOF
+--- PASS: TestDialRaceResumesDial (0.07s)
+=== RUN   TestTransportDataAfter1xxHeader
+--- PASS: TestTransportDataAfter1xxHeader (0.00s)
+=== RUN   TestIssue66763Race
+--- PASS: TestIssue66763Race (0.00s)
+=== RUN   TestIssue67671
+--- PASS: TestIssue67671 (0.02s)
+=== RUN   TestTransport1xxLimits
+=== RUN   TestTransport1xxLimits/default
+=== RUN   TestTransport1xxLimits/MaxHeaderListSize
+=== RUN   TestTransport1xxLimits/MaxResponseHeaderBytes
+=== RUN   TestTransport1xxLimits/limit_by_client_trace
+=== RUN   TestTransport1xxLimits/limit_disabled_by_client_trace
+--- PASS: TestTransport1xxLimits (0.00s)
+    --- PASS: TestTransport1xxLimits/default (0.00s)
+    --- PASS: TestTransport1xxLimits/MaxHeaderListSize (0.00s)
+    --- PASS: TestTransport1xxLimits/MaxResponseHeaderBytes (0.00s)
+    --- PASS: TestTransport1xxLimits/limit_by_client_trace (0.00s)
+    --- PASS: TestTransport1xxLimits/limit_disabled_by_client_trace (0.00s)
+=== RUN   TestTransportSendPingWithReset
+--- PASS: TestTransportSendPingWithReset (0.06s)
+=== RUN   TestTransportNoPingAfterResetWithFrames
+--- PASS: TestTransportNoPingAfterResetWithFrames (0.00s)
+=== RUN   TestTransportSendNoMoreThanOnePingWithReset
+--- PASS: TestTransportSendNoMoreThanOnePingWithReset (0.00s)
+=== RUN   TestTransportConnBecomesUnresponsive
+    transport_test.go:5762: first request opens a new connection and succeeds
+    transport_test.go:5786: request 0 receives no response and is canceled
+    transport_test.go:5786: request 1 receives no response and is canceled
+    transport_test.go:5786: request 2 receives no response and is canceled
+--- PASS: TestTransportConnBecomesUnresponsive (0.00s)
+=== RUN   TestTransportTLSNextProtoConnOK
+--- PASS: TestTransportTLSNextProtoConnOK (0.00s)
+=== RUN   TestTransportTLSNextProtoConnImmediateFailureUsed
+--- PASS: TestTransportTLSNextProtoConnImmediateFailureUsed (0.00s)
+=== RUN   TestTransportTLSNextProtoConnIdleTimoutBeforeUse
+--- PASS: TestTransportTLSNextProtoConnIdleTimoutBeforeUse (0.00s)
+=== RUN   TestTransportTLSNextProtoConnImmediateFailureUnused
+--- PASS: TestTransportTLSNextProtoConnImmediateFailureUnused (0.00s)
+=== RUN   TestExtendedConnectClientWithServerSupport
+    transport_test.go:5982: 23 <nil>
+--- PASS: TestExtendedConnectClientWithServerSupport (0.01s)
+=== RUN   TestExtendedConnectClientWithoutServerSupport
+--- PASS: TestExtendedConnectClientWithoutServerSupport (0.01s)
+=== RUN   TestExtendedConnectReadFrameError
+--- PASS: TestExtendedConnectReadFrameError (0.00s)
+=== RUN   TestProxySchedulerBoundedProgress
+=== RUN   TestProxySchedulerBoundedProgress/zero0_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero0_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero0_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero0_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero8_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero8_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero8_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero8_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero10_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero10_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero10_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero10_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero17_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero17_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero17_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero17_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero31_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero31_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero31_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero31_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data1_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data1_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data1_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data1_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data8_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data8_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data8_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero1_data8_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data8_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data8_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data8_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero9_data8_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data4_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data4_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data4_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero18_data4_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data16_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data16_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data16_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero64_data16_order3
+=== RUN   TestProxySchedulerBoundedProgress/zero256_data256_order0
+=== RUN   TestProxySchedulerBoundedProgress/zero256_data256_order1
+=== RUN   TestProxySchedulerBoundedProgress/zero256_data256_order2
+=== RUN   TestProxySchedulerBoundedProgress/zero256_data256_order3
+--- PASS: TestProxySchedulerBoundedProgress (0.10s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero0_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero0_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero0_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero0_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero8_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero8_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero8_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero8_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero10_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero10_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero10_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero10_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero17_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero17_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero17_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero17_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero31_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero31_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero31_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero31_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data1_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data1_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data1_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data1_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data8_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data8_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data8_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero1_data8_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data8_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data8_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data8_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero9_data8_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data4_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data4_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data4_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero18_data4_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data16_order0 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data16_order1 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data16_order2 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero64_data16_order3 (0.00s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero256_data256_order0 (0.01s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero256_data256_order1 (0.01s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero256_data256_order2 (0.01s)
+    --- PASS: TestProxySchedulerBoundedProgress/zero256_data256_order3 (0.01s)
+=== RUN   TestProxySchedulerZeroPayloadKindsProgress
+=== RUN   TestProxySchedulerZeroPayloadKindsProgress/0
+=== RUN   TestProxySchedulerZeroPayloadKindsProgress/2
+=== RUN   TestProxySchedulerZeroPayloadKindsProgress/3
+--- PASS: TestProxySchedulerZeroPayloadKindsProgress (0.00s)
+    --- PASS: TestProxySchedulerZeroPayloadKindsProgress/0 (0.00s)
+    --- PASS: TestProxySchedulerZeroPayloadKindsProgress/2 (0.00s)
+    --- PASS: TestProxySchedulerZeroPayloadKindsProgress/3 (0.00s)
+=== RUN   TestProxySchedulerCursorLifecycle
+=== RUN   TestProxySchedulerCursorLifecycle/regular
+=== RUN   TestProxySchedulerCursorLifecycle/priority
+=== RUN   TestProxySchedulerCursorLifecycle/other
+--- PASS: TestProxySchedulerCursorLifecycle (0.06s)
+    --- PASS: TestProxySchedulerCursorLifecycle/regular (0.00s)
+    --- PASS: TestProxySchedulerCursorLifecycle/priority (0.00s)
+    --- PASS: TestProxySchedulerCursorLifecycle/other (0.00s)
+=== RUN   TestProxySchedulerPreferredTurnKeepsRegularCursor
+--- PASS: TestProxySchedulerPreferredTurnKeepsRegularCursor (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticBacklog
+=== RUN   TestSchedulerFIFODiagnosticBacklog/production_rr
+    writesched_fifo_diagnostic_test.go:181: FIFO_RESULT {"mode":"production_rr","other_data_bytes_before":22020096,"popped_frame_kinds":{"data":337,"stream_window_update":168},"target_data_pop_1_based":505,"target_logical_frames_first_last":[169,1],"target_pending_bytes_until_selected":1552}
+=== RUN   TestSchedulerFIFODiagnosticBacklog/fair_proxy
+    writesched_fifo_diagnostic_test.go:181: FIFO_RESULT {"mode":"fair_proxy","other_data_bytes_before":917504,"popped_frame_kinds":{"data":15,"stream_window_update":168},"target_data_pop_1_based":183,"target_logical_frames_first_last":[169,1],"target_pending_bytes_until_selected":1552}
+=== RUN   TestSchedulerFIFODiagnosticBacklog/rr_quantum16k_model
+    writesched_fifo_diagnostic_test.go:181: FIFO_RESULT {"mode":"rr_quantum16k_model","other_data_bytes_before":5505024,"popped_frame_kinds":{"data":337,"stream_window_update":168},"target_data_pop_1_based":505,"target_logical_frames_first_last":[169,1],"target_pending_bytes_until_selected":1552}
+=== RUN   TestSchedulerFIFODiagnosticBacklog/proxy_quantum16k_model
+    writesched_fifo_diagnostic_test.go:181: FIFO_RESULT {"mode":"proxy_quantum16k_model","other_data_bytes_before":229376,"popped_frame_kinds":{"data":15,"stream_window_update":168},"target_data_pop_1_based":183,"target_logical_frames_first_last":[169,1],"target_pending_bytes_until_selected":1552}
+--- PASS: TestSchedulerFIFODiagnosticBacklog (0.10s)
+    --- PASS: TestSchedulerFIFODiagnosticBacklog/production_rr (0.03s)
+    --- PASS: TestSchedulerFIFODiagnosticBacklog/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticBacklog/rr_quantum16k_model (0.07s)
+    --- PASS: TestSchedulerFIFODiagnosticBacklog/proxy_quantum16k_model (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticZeroCreditAndKinds
+=== RUN   TestSchedulerFIFODiagnosticZeroCreditAndKinds/production_rr
+=== RUN   TestSchedulerFIFODiagnosticZeroCreditAndKinds/fair_proxy
+=== RUN   TestSchedulerFIFODiagnosticZeroCreditAndKinds/rr_quantum16k_model
+=== RUN   TestSchedulerFIFODiagnosticZeroCreditAndKinds/proxy_quantum16k_model
+--- PASS: TestSchedulerFIFODiagnosticZeroCreditAndKinds (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticZeroCreditAndKinds/production_rr (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticZeroCreditAndKinds/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticZeroCreditAndKinds/rr_quantum16k_model (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticZeroCreditAndKinds/proxy_quantum16k_model (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticSustainedStreamWU
+=== RUN   TestSchedulerFIFODiagnosticSustainedStreamWU/production_rr
+    writesched_fifo_diagnostic_test.go:266: FAIRNESS mode=production_rr max_stream_WU_before_DATA=1 DATA_pops=256
+=== RUN   TestSchedulerFIFODiagnosticSustainedStreamWU/fair_proxy
+    writesched_fifo_diagnostic_test.go:266: FAIRNESS mode=fair_proxy max_stream_WU_before_DATA=17 DATA_pops=28
+=== RUN   TestSchedulerFIFODiagnosticSustainedStreamWU/rr_quantum16k_model
+    writesched_fifo_diagnostic_test.go:266: FAIRNESS mode=rr_quantum16k_model max_stream_WU_before_DATA=1 DATA_pops=256
+=== RUN   TestSchedulerFIFODiagnosticSustainedStreamWU/proxy_quantum16k_model
+    writesched_fifo_diagnostic_test.go:266: FAIRNESS mode=proxy_quantum16k_model max_stream_WU_before_DATA=17 DATA_pops=28
+--- PASS: TestSchedulerFIFODiagnosticSustainedStreamWU (0.02s)
+    --- PASS: TestSchedulerFIFODiagnosticSustainedStreamWU/production_rr (0.01s)
+    --- PASS: TestSchedulerFIFODiagnosticSustainedStreamWU/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticSustainedStreamWU/rr_quantum16k_model (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticSustainedStreamWU/proxy_quantum16k_model (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticManyStreamWUBoundary
+=== RUN   TestSchedulerFIFODiagnosticManyStreamWUBoundary/production_rr
+    writesched_fifo_diagnostic_test.go:312: MANY_STREAM_WU_BOUNDARY mode=production_rr replenished_WU_streams=9 total_pops=1000 DATA_pops=100
+=== RUN   TestSchedulerFIFODiagnosticManyStreamWUBoundary/fair_proxy
+    writesched_fifo_diagnostic_test.go:312: MANY_STREAM_WU_BOUNDARY mode=fair_proxy replenished_WU_streams=9 total_pops=1000 DATA_pops=11
+=== RUN   TestSchedulerFIFODiagnosticManyStreamWUBoundary/rr_quantum16k_model
+    writesched_fifo_diagnostic_test.go:312: MANY_STREAM_WU_BOUNDARY mode=rr_quantum16k_model replenished_WU_streams=9 total_pops=1000 DATA_pops=100
+=== RUN   TestSchedulerFIFODiagnosticManyStreamWUBoundary/proxy_quantum16k_model
+    writesched_fifo_diagnostic_test.go:312: MANY_STREAM_WU_BOUNDARY mode=proxy_quantum16k_model replenished_WU_streams=9 total_pops=1000 DATA_pops=11
+--- PASS: TestSchedulerFIFODiagnosticManyStreamWUBoundary (0.01s)
+    --- PASS: TestSchedulerFIFODiagnosticManyStreamWUBoundary/production_rr (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticManyStreamWUBoundary/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticManyStreamWUBoundary/rr_quantum16k_model (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticManyStreamWUBoundary/proxy_quantum16k_model (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticGlobalControlBoundary
+=== RUN   TestSchedulerFIFODiagnosticGlobalControlBoundary/production_rr
+    writesched_fifo_diagnostic_test.go:351: CONTROL_BOUNDARY mode=production_rr finite_controls_before_DATA=163 sustained_control_pops_without_DATA=512
+=== RUN   TestSchedulerFIFODiagnosticGlobalControlBoundary/fair_proxy
+    writesched_fifo_diagnostic_test.go:351: CONTROL_BOUNDARY mode=fair_proxy finite_controls_before_DATA=163 sustained_control_pops_without_DATA=512
+=== RUN   TestSchedulerFIFODiagnosticGlobalControlBoundary/rr_quantum16k_model
+    writesched_fifo_diagnostic_test.go:351: CONTROL_BOUNDARY mode=rr_quantum16k_model finite_controls_before_DATA=163 sustained_control_pops_without_DATA=512
+=== RUN   TestSchedulerFIFODiagnosticGlobalControlBoundary/proxy_quantum16k_model
+    writesched_fifo_diagnostic_test.go:351: CONTROL_BOUNDARY mode=proxy_quantum16k_model finite_controls_before_DATA=163 sustained_control_pops_without_DATA=512
+--- PASS: TestSchedulerFIFODiagnosticGlobalControlBoundary (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticGlobalControlBoundary/production_rr (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticGlobalControlBoundary/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticGlobalControlBoundary/rr_quantum16k_model (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticGlobalControlBoundary/proxy_quantum16k_model (0.00s)
+=== RUN   TestSchedulerFIFODiagnosticCloseLifecycle
+=== RUN   TestSchedulerFIFODiagnosticCloseLifecycle/production_rr
+=== RUN   TestSchedulerFIFODiagnosticCloseLifecycle/fair_proxy
+=== RUN   TestSchedulerFIFODiagnosticCloseLifecycle/rr_quantum16k_model
+=== RUN   TestSchedulerFIFODiagnosticCloseLifecycle/proxy_quantum16k_model
+--- PASS: TestSchedulerFIFODiagnosticCloseLifecycle (0.05s)
+    --- PASS: TestSchedulerFIFODiagnosticCloseLifecycle/production_rr (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticCloseLifecycle/fair_proxy (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticCloseLifecycle/rr_quantum16k_model (0.00s)
+    --- PASS: TestSchedulerFIFODiagnosticCloseLifecycle/proxy_quantum16k_model (0.00s)
+=== RUN   TestQueueObservationFeedbackAheadOfData
+--- PASS: TestQueueObservationFeedbackAheadOfData (0.00s)
+=== RUN   TestQueueObservationBoundAndUnknown
+--- PASS: TestQueueObservationBoundAndUnknown (0.00s)
+=== RUN   TestQueueObservationKindsAndPartialData
+--- PASS: TestQueueObservationKindsAndPartialData (0.00s)
+=== RUN   TestQueueObservationGateBoundsAndPrivacy
+--- PASS: TestQueueObservationGateBoundsAndPrivacy (0.00s)
+=== RUN   TestPriorityTwoStreams
+--- PASS: TestPriorityTwoStreams (0.00s)
+=== RUN   TestPriorityAdjustExclusiveZero
+--- PASS: TestPriorityAdjustExclusiveZero (0.00s)
+=== RUN   TestPriorityAdjustOwnParent
+--- PASS: TestPriorityAdjustOwnParent (0.00s)
+=== RUN   TestPriorityClosedStreams
+--- PASS: TestPriorityClosedStreams (0.00s)
+=== RUN   TestPriorityClosedStreamsDisabled
+--- PASS: TestPriorityClosedStreamsDisabled (0.00s)
+=== RUN   TestPriorityIdleStreams
+--- PASS: TestPriorityIdleStreams (0.00s)
+=== RUN   TestPriorityIdleStreamsDisabled
+--- PASS: TestPriorityIdleStreamsDisabled (0.00s)
+=== RUN   TestPrioritySection531NonExclusive
+--- PASS: TestPrioritySection531NonExclusive (0.00s)
+=== RUN   TestPrioritySection531Exclusive
+--- PASS: TestPrioritySection531Exclusive (0.00s)
+=== RUN   TestPrioritySection533NonExclusive
+--- PASS: TestPrioritySection533NonExclusive (0.00s)
+=== RUN   TestPrioritySection533Exclusive
+--- PASS: TestPrioritySection533Exclusive (0.00s)
+=== RUN   TestPriorityPopFrom533Tree
+    writesched_priority_rfc7540_test.go:383: tree: 1{parent:0} 2{parent:1} 3{parent:1} 4{parent:3} 5{parent:3} 6{parent:4}
+--- PASS: TestPriorityPopFrom533Tree (0.00s)
+=== RUN   TestPriorityRSTFrames
+--- PASS: TestPriorityRSTFrames (0.00s)
+=== RUN   TestPriorityPopFromLinearTree
+    writesched_priority_rfc7540_test.go:426: tree: 1{parent:0} 2{parent:1} 3{parent:2} 4{parent:3}
+--- PASS: TestPriorityPopFromLinearTree (0.00s)
+=== RUN   TestPriorityFlowControl
+--- PASS: TestPriorityFlowControl (0.00s)
+=== RUN   TestPriorityThrottleOutOfOrderWrites
+--- PASS: TestPriorityThrottleOutOfOrderWrites (0.00s)
+=== RUN   TestPriorityWeights
+--- PASS: TestPriorityWeights (0.00s)
+=== RUN   TestPriorityWeightsMinMax
+--- PASS: TestPriorityWeightsMinMax (0.00s)
+=== RUN   TestPriorityRstStreamOnNonOpenStreams
+--- PASS: TestPriorityRstStreamOnNonOpenStreams (0.00s)
+=== RUN   TestPriorityIssue66514
+--- PASS: TestPriorityIssue66514 (0.00s)
+=== RUN   TestPrioritySchedulerUrgency
+--- PASS: TestPrioritySchedulerUrgency (0.00s)
+=== RUN   TestPrioritySchedulerIncremental
+--- PASS: TestPrioritySchedulerIncremental (0.00s)
+=== RUN   TestPrioritySchedulerUrgencyAndIncremental
+--- PASS: TestPrioritySchedulerUrgencyAndIncremental (0.00s)
+=== RUN   TestPrioritySchedulerIdempotentUpdate
+--- PASS: TestPrioritySchedulerIdempotentUpdate (0.00s)
+=== RUN   TestPrioritySchedulerBuffersPriorityUpdate
+--- PASS: TestPrioritySchedulerBuffersPriorityUpdate (0.00s)
+=== RUN   TestProxySlowWriteThresholdAndExpiry
+--- PASS: TestProxySlowWriteThresholdAndExpiry (0.00s)
+=== RUN   TestProxySlowWriteSingleStreamRefreshErrorAndClosed
+--- PASS: TestProxySlowWriteSingleStreamRefreshErrorAndClosed (0.00s)
+=== RUN   TestProxySlowWriteActualCompletionExcludesHandoff
+--- PASS: TestProxySlowWriteActualCompletionExcludesHandoff (0.00s)
+=== RUN   TestProxySlowWriteDefaultOffAndControlClock
+--- PASS: TestProxySlowWriteDefaultOffAndControlClock (0.00s)
+=== RUN   TestProxySlowWriteNoFailedOrClosedCallback
+--- PASS: TestProxySlowWriteNoFailedOrClosedCallback (0.00s)
+=== RUN   TestProxySlowWritePartialFIFOAndCompletion
+--- PASS: TestProxySlowWritePartialFIFOAndCompletion (0.00s)
+=== RUN   TestProxySlowWriteFlowPeerLimitAndClose
+--- PASS: TestProxySlowWriteFlowPeerLimitAndClose (0.00s)
+=== RUN   TestProxySlowWritePreservesFairnessAndGlobalControl
+--- PASS: TestProxySlowWritePreservesFairnessAndGlobalControl (0.00s)
+=== RUN   TestProxyDataQuantumValidationAndZeroEquivalence
+--- PASS: TestProxyDataQuantumValidationAndZeroEquivalence (0.00s)
+=== RUN   TestProxyDataQuantumTwoBulkAhead
+    writesched_proxy_quantum_test.go:112: quantum=0 competing DATA bytes before 1099B target=131072 (no network timing)
+    writesched_proxy_quantum_test.go:112: quantum=16384 competing DATA bytes before 1099B target=32768 (no network timing)
+--- PASS: TestProxyDataQuantumTwoBulkAhead (0.00s)
+=== RUN   TestProxyDataQuantumPartialFIFOAndCompletion
+--- PASS: TestProxyDataQuantumPartialFIFOAndCompletion (0.00s)
+=== RUN   TestProxyDataQuantumFlowPeerLimitAndClose
+--- PASS: TestProxyDataQuantumFlowPeerLimitAndClose (0.00s)
+=== RUN   TestProxyDataQuantumPreservesFairnessAndGlobalControl
+--- PASS: TestProxyDataQuantumPreservesFairnessAndGlobalControl (0.00s)
+=== RUN   TestProxySchedulerHeadersAndFairness
+    writesched_proxy_test.go:38: optimized=false bulk_bytes_before_new_headers=540672
+    writesched_proxy_test.go:38: optimized=true bulk_bytes_before_new_headers=0
+--- PASS: TestProxySchedulerHeadersAndFairness (0.01s)
+=== RUN   TestRandomScheduler
+    writesched_random_test.go:29: got frames: [[FrameWriteRequest stream=0, ch=false, writer=http2.writeSettingsAck] [FrameWriteRequest stream=0, ch=false, writer=http2.writeSettingsAck] [FrameWriteRequest stream=1, ch=false, writer=http2.StreamError] [FrameWriteRequest stream=3, ch=false, writer=*http2.writeResHeaders] [FrameWriteRequest stream=4, ch=false, writer=*http2.writeResHeaders] [FrameWriteRequest stream=1, ch=false, writer=*http2.writeResHeaders] [FrameWriteRequest stream=2, ch=false, writer=*http2.writeResHeaders]]
+--- PASS: TestRandomScheduler (0.00s)
+=== RUN   TestRoundRobinScheduler
+--- PASS: TestRoundRobinScheduler (0.00s)
+=== RUN   TestFrameWriteRequestNonData
+--- PASS: TestFrameWriteRequestNonData (0.00s)
+=== RUN   TestFrameWriteRequestWithData
+--- PASS: TestFrameWriteRequestWithData (0.00s)
+=== RUN   TestFrameWriteRequestData
+--- PASS: TestFrameWriteRequestData (0.00s)
+=== RUN   TestFrameWriteRequest_StreamID
+--- PASS: TestFrameWriteRequest_StreamID (0.00s)
+PASS
+ok  	golang.org/x/net/http2	75.150s
+=== RUN   TestEncoderTableSizeUpdate
+--- PASS: TestEncoderTableSizeUpdate (0.00s)
+=== RUN   TestEncoderWriteField
+--- PASS: TestEncoderWriteField (0.00s)
+=== RUN   TestEncoderSearchTable
+--- PASS: TestEncoderSearchTable (0.00s)
+=== RUN   TestAppendVarInt
+--- PASS: TestAppendVarInt (0.00s)
+=== RUN   TestAppendHpackString
+--- PASS: TestAppendHpackString (0.00s)
+=== RUN   TestAppendIndexed
+--- PASS: TestAppendIndexed (0.00s)
+=== RUN   TestAppendNewName
+--- PASS: TestAppendNewName (0.00s)
+=== RUN   TestAppendIndexedName
+--- PASS: TestAppendIndexedName (0.00s)
+=== RUN   TestAppendTableSize
+--- PASS: TestAppendTableSize (0.00s)
+=== RUN   TestEncoderSetMaxDynamicTableSize
+--- PASS: TestEncoderSetMaxDynamicTableSize (0.00s)
+=== RUN   TestEncoderSetMaxDynamicTableSizeLimit
+--- PASS: TestEncoderSetMaxDynamicTableSizeLimit (0.00s)
+=== RUN   TestDynamicTableAt
+--- PASS: TestDynamicTableAt (0.00s)
+=== RUN   TestDynamicTableSizeEvict
+--- PASS: TestDynamicTableSizeEvict (0.00s)
+=== RUN   TestDecoderDecode
+--- PASS: TestDecoderDecode (0.00s)
+=== RUN   TestDecodeC3_NoHuffman
+--- PASS: TestDecodeC3_NoHuffman (0.00s)
+=== RUN   TestDecodeC4_Huffman
+--- PASS: TestDecodeC4_Huffman (0.00s)
+=== RUN   TestDecodeC5_ResponsesNoHuff
+--- PASS: TestDecodeC5_ResponsesNoHuff (0.00s)
+=== RUN   TestDecodeC6_ResponsesHuffman
+--- PASS: TestDecodeC6_ResponsesHuffman (0.00s)
+=== RUN   TestHuffmanDecodeExcessPadding
+--- PASS: TestHuffmanDecodeExcessPadding (0.00s)
+=== RUN   TestHuffmanDecodeEOS
+--- PASS: TestHuffmanDecodeEOS (0.00s)
+=== RUN   TestHuffmanDecodeMaxLengthOnTrailingByte
+--- PASS: TestHuffmanDecodeMaxLengthOnTrailingByte (0.00s)
+=== RUN   TestHuffmanDecodeCorruptPadding
+--- PASS: TestHuffmanDecodeCorruptPadding (0.00s)
+=== RUN   TestHuffmanDecode
+--- PASS: TestHuffmanDecode (0.00s)
+=== RUN   TestAppendHuffmanString
+--- PASS: TestAppendHuffmanString (0.00s)
+=== RUN   TestHuffmanMaxStrLen
+--- PASS: TestHuffmanMaxStrLen (0.00s)
+=== RUN   TestHuffmanRoundtripStress
+    hpack_test.go:565: Seed = 1792313804157427802
+    hpack_test.go:583: Compressed size of original: 228.28% (250000 -> 570703)
+--- PASS: TestHuffmanRoundtripStress (0.02s)
+=== RUN   TestHuffmanDecodeFuzz
+    hpack_test.go:595: Seed = 1792313804173229492
+    hpack_test.go:619: 67.30% are invalid (3365 / 5000)
+--- PASS: TestHuffmanDecodeFuzz (0.01s)
+=== RUN   TestReadVarInt
+--- PASS: TestReadVarInt (0.00s)
+=== RUN   TestHuffmanFuzzCrash
+--- PASS: TestHuffmanFuzzCrash (0.00s)
+=== RUN   TestEmitEnabled
+--- PASS: TestEmitEnabled (0.00s)
+=== RUN   TestSlowIncrementalDecode
+    hpack_test.go:733: too slow in -race mode
+--- SKIP: TestSlowIncrementalDecode (0.00s)
+=== RUN   TestSaveBufLimit
+--- PASS: TestSaveBufLimit (0.00s)
+=== RUN   TestDynamicSizeUpdate
+--- PASS: TestDynamicSizeUpdate (0.00s)
+=== RUN   TestHeaderFieldTable
+--- PASS: TestHeaderFieldTable (0.00s)
+=== RUN   TestHeaderFieldTable_LookupMapEviction
+--- PASS: TestHeaderFieldTable_LookupMapEviction (0.00s)
+=== RUN   TestStaticTable
+--- PASS: TestStaticTable (0.00s)
+PASS
+ok  	golang.org/x/net/http2/hpack	0.094s

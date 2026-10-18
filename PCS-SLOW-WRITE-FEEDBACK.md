@@ -3,7 +3,9 @@
 Status: nine targeted tests passed in normal and race modes on 2026-10-18
 (08:45:20–08:46:52 and 08:47:11–08:48:22 UTC). The exact tested runtime
 commit is `7036bdb`; [results and complete test logs](docs/results/slow-write-feedback-20261018/summary.json)
-include the earlier disk-guard interruption. Full integration, performance
+include the earlier disk-guard interruption. Full HTTP/2 and HPACK normal
+regression also passed (08:54:00–08:56:47 UTC); [full regression evidence](docs/results/slow-write-feedback-20261018/full-regression.json)
+records exact package timing and the complete log. Caddy integration, performance
 acceptance and production deployment remain pending. Earlier fixed-quantum
 experiments (88 rounds, HOLD) remain unchanged.
 
