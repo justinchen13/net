@@ -91,15 +91,16 @@ def main():
         require(goenv["GOMOD"] == str(ROOT / "go.mod"), "wrong module root")
         result["toolchain"] = goenv
         result["toolchain_go_binary_sha256"] = sha(Path(goenv["GOROOT"]) / "bin/go")
-        # Acquisition is online, at locked versions with Go checksum verification.
-        # The actual test/build then use the same offline module policy as the local builder.
-        run("modules-download", ["go", "mod", "download", "-json", "all"])
+        fixture = str(HERE / "fixture.go")
+        tests = str(HERE / "fixture_test.go")
+        # Fetch only packages used by this fixture, without executing or compiling it.
+        # "go mod download all" would also fetch unused modules and expand frozen go.sum.
+        run("fixture-dependencies", ["go", "list", "-mod=readonly", "-deps", "-json", fixture])
         run("modules-verify", ["go", "mod", "verify"])
         verify_inputs()
         env.update(GOPROXY="off", GOSUMDB="off")
-        run("modules-list", ["go", "list", "-m", "-json", "all"])
-        fixture = str(HERE / "fixture.go")
-        tests = str(HERE / "fixture_test.go")
+        # Record the same package/module closure offline, not the entire module graph.
+        run("modules-list", ["go", "list", "-mod=readonly", "-deps", "-json", fixture])
         test_output = run("pure-tests", ["go", "test", *contract["test_flags"], fixture, tests])
         events = [json.loads(line) for line in test_output.splitlines() if line.strip()]
         top = contract["expected_top_test"]

@@ -18,9 +18,12 @@ credentials. The official actions are pinned to verified commit SHAs; release,
 tag API and exact action.yml references are in `actions-lock.json`.
 
 Go is exactly 1.25.6, linux/amd64, CGO disabled, GOAMD64=v1 and GOTOOLCHAIN=local.
-Dependencies are fetched at the existing locked versions via the public Go proxy
-with sum.golang.org verification. After `go mod verify`, test/build run with
-GOPROXY/GOSUMDB off. Inputs are checked again afterwards.
+Only the fixture's actual package dependencies are acquired using
+`go list -mod=readonly -deps -json fixture.go`, at the existing locked versions
+via the public Go proxy with sum.golang.org verification. This neither compiles
+nor executes the fixture. After `go mod verify`, the same package/module closure
+is recorded offline in `modules-list.log`; test/build also use GOPROXY/GOSUMDB
+off. Input hashes must remain unchanged; no lockfile is restored to hide changes.
 
 The local builder's test flags were `-p=1 -count=1 -timeout=20s -mod=readonly`;
 CI adds only `-json` to require all 15 distinct cases and the parent/package to
@@ -43,5 +46,9 @@ it is not the old local `build-result.json` and must not be passed off as one.
 A separately reviewed adapter/authorization is required before any later runtime
 experiment; both experiment arms must use the same accepted fixture binary.
 
-Current preparation status: static validation only. No local Go compilation,
-workflow push or CI execution was performed while preparing these files.
+The first CI attempt, run `39119846763` at commit `faea54af`, failed its unchanged
+go.sum guard before tests/build: `go mod download all` added checksums for unused
+x/mod, x/sync and x/tools modules. Its failure artifact remains available. The
+narrow dependency acquisition above is a separately reviewed follow-up, not a
+rerun that changes or conceals the original result. No local Go compilation is
+needed to prepare this workflow.
