@@ -493,6 +493,10 @@ func (s *Server) serveConn(c net.Conn, opts *ServeConnOpts, newf func(*serverCon
 	default:
 		sc.writeSched = newPriorityWriteSchedulerRFC9218()
 	}
+	if feedback, ok := sc.writeSched.(proxyWriteFeedbackScheduler); ok {
+		sc.writeFeedback = feedback
+		sc.writeFeedbackNow = feedback.proxyWriteClock()
+	}
 
 	// These start at the RFC-specified defaults. If there is a higher
 	// configured value for inflow, that will be updated when we send a
@@ -636,6 +640,8 @@ type serverConn struct {
 	tlsState         *tls.ConnectionState   // shared by all handlers, like net/http
 	remoteAddrStr    string
 	writeSched       WriteScheduler
+	writeFeedback    proxyWriteFeedbackScheduler // immutable after scheduler setup; nil by default
+	writeFeedbackNow func() time.Time            // immutable, concurrency-safe clock; nil by default
 	countErrorFunc   func(errType string)
 
 	// Everything following is owned by the serve loop; use serveG.check():
@@ -695,6 +701,8 @@ func (sc *serverConn) writeSchedIgnoresRFC7540() bool {
 	case *randomWriteScheduler:
 		return true
 	case *roundRobinWriteScheduler:
+		return true
+	case *proxySlowWriteScheduler:
 		return true
 	default:
 		return false
@@ -932,9 +940,11 @@ func (sc *serverConn) readFrames() {
 
 // frameWriteResult is the message passed from writeFrameAsync to the serve goroutine.
 type frameWriteResult struct {
-	_   incomparable
-	wr  FrameWriteRequest // what was written (or attempted)
-	err error             // result of the writeFrame call
+	_                     incomparable
+	wr                    FrameWriteRequest // what was written (or attempted)
+	err                   error             // result of the writeFrame call
+	feedbackCompletedAt   time.Time         // zero unless opted-in DATA/flush write
+	feedbackWriteDuration time.Duration     // actual writer call, excludes serve-loop handoff
 }
 
 // writeFrameAsync runs in its own goroutine and writes a single frame
@@ -942,13 +952,16 @@ type frameWriteResult struct {
 // At most one goroutine can be running writeFrameAsync at a time per
 // serverConn.
 func (sc *serverConn) writeFrameAsync(wr FrameWriteRequest, wd *writeData) {
+	start := sc.beginProxyWrite(wr)
 	var err error
 	if wd == nil {
 		err = wr.write.writeFrame(sc)
 	} else {
 		err = sc.framer.endWrite()
 	}
-	sc.wroteFrameCh <- frameWriteResult{wr: wr, err: err}
+	res := frameWriteResult{wr: wr, err: err}
+	sc.endProxyWrite(&res, start)
+	sc.wroteFrameCh <- res
 }
 
 func (sc *serverConn) closeAllStreamsOnConnClose() {
@@ -1456,8 +1469,11 @@ func (sc *serverConn) startFrameWrite(wr FrameWriteRequest) {
 	sc.needsFrameFlush = true
 	if wr.write.staysWithinBuffer(sc.bw.Available()) {
 		sc.writingFrameAsync = false
+		start := sc.beginProxyWrite(wr)
 		err := wr.write.writeFrame(sc)
-		sc.wroteFrame(frameWriteResult{wr: wr, err: err})
+		res := frameWriteResult{wr: wr, err: err}
+		sc.endProxyWrite(&res, start)
+		sc.wroteFrame(res)
 	} else if wd, ok := wr.write.(*writeData); ok {
 		// Encode the frame in the serve goroutine, to ensure we don't have
 		// any lingering asynchronous references to data passed to Write.
@@ -1486,6 +1502,7 @@ func (sc *serverConn) wroteFrame(res frameWriteResult) {
 	sc.writingFrame = false
 	sc.writingFrameAsync = false
 
+	sc.applyProxyWriteFeedback(res)
 	if res.err != nil {
 		sc.observe("frame_write_error")
 		sc.conn.Close()
