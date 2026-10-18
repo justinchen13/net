@@ -1,0 +1,159 @@
+{
+  "kind": "targeted_correctness_only",
+  "runtime_source_commit": "7036bdbdc5225c8bef6d644b892ae08d6e644860",
+  "generated_utc": "2026-10-18T08:50:35.206955+00:00",
+  "production_deployed": false,
+  "performance_accepted": false,
+  "phases": {
+    "normal": {
+      "status": "PASS",
+      "started_utc": "2026-10-18T08:45:20.112687+00:00",
+      "finished_utc": "2026-10-18T08:46:52.198977+00:00",
+      "source_commit": "7036bdbdc5225c8bef6d644b892ae08d6e644860",
+      "source_sha256": {
+        "http2/server.go": "5006f440d90df9f0fdd3980b41ba920f761144b8429a350465623c7ebeee146f",
+        "http2/writesched_proxy_feedback.go": "5e0d0a70399ad10306ae59c60a60d5982201af05661961c8da484086c80b7ddd",
+        "http2/writesched_proxy_feedback_test.go": "6754e315cdf6924e8d802a588e82c98ab0c37309967cbd04131ce9a6148854c5",
+        "http2/proxy_slow_feedback_tls_test.go": "3d16a11e7f8b39233675ed728fae1002c3269184516948ff133668ad86b5f1b8",
+        "PCS-SLOW-WRITE-FEEDBACK.md": "afb051dc7c75ba31d79c818f2defb8a14f50ac3e992c0b2e69f1c4f00dfd1914"
+      },
+      "plan_sha256": "177089e9f558fdf69f320cdce15a83ae652337095532637d8e541041a2950999",
+      "runner_sha256": "dbbb879fab3d2cb50d9521edb5d30067308320870ab8be591bcb30b2c47e83ec",
+      "builder_image": "sha256:9a047b56e53e74da852631ba1d23e186d0ab7cb4013a4ddb243e61cf1d7f0af7",
+      "command": "go test -p 1 -mod=readonly -count=1 -timeout=90s -run ^TestProxySlowWrite -v ./http2",
+      "actual_limits": {
+        "NanoCpus": 350000000,
+        "Memory": 536870912,
+        "MemorySwap": 536870912,
+        "NetworkMode": "none",
+        "PidsLimit": 256
+      },
+      "disk_min_free_bytes": 2080051200,
+      "container_state": {
+        "Running": false,
+        "Status": "exited",
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-10-18T08:45:20.963419153Z",
+        "FinishedAt": "2026-10-18T08:46:51.194325253Z",
+        "Error": ""
+      },
+      "owned_cleanup": true,
+      "container_absence_verified": true,
+      "volume_absence_verified": [],
+      "output_observations": {
+        "go_version_match": true,
+        "target_test_started": true,
+        "target_test_pass_line_seen": true,
+        "interpretation": "Missing test output does not distinguish compilation, link or pre-test startup. Only command exit0 plus guards yields PASS.",
+        "expected_top_level_tests": [
+          "TestProxySlowWriteThresholdAndExpiry",
+          "TestProxySlowWriteSingleStreamRefreshErrorAndClosed",
+          "TestProxySlowWriteActualCompletionExcludesHandoff",
+          "TestProxySlowWriteDefaultOffAndControlClock",
+          "TestProxySlowWriteNoFailedOrClosedCallback",
+          "TestProxySlowWritePartialFIFOAndCompletion",
+          "TestProxySlowWriteFlowPeerLimitAndClose",
+          "TestProxySlowWritePreservesFairnessAndGlobalControl",
+          "TestProxySlowWriteFeedbackLateDATARealTLS"
+        ],
+        "passed_top_level_tests": [
+          "TestProxySlowWriteThresholdAndExpiry",
+          "TestProxySlowWriteSingleStreamRefreshErrorAndClosed",
+          "TestProxySlowWriteActualCompletionExcludesHandoff",
+          "TestProxySlowWriteDefaultOffAndControlClock",
+          "TestProxySlowWriteNoFailedOrClosedCallback",
+          "TestProxySlowWritePartialFIFOAndCompletion",
+          "TestProxySlowWriteFlowPeerLimitAndClose",
+          "TestProxySlowWritePreservesFairnessAndGlobalControl",
+          "TestProxySlowWriteFeedbackLateDATARealTLS"
+        ]
+      },
+      "log_sha256": "6f95187ee4fd077992bd8aab4e7aac99f6a1e246a300683121e35e4f7bd7437b",
+      "go_test_package_seconds": 0.384
+    },
+    "race": {
+      "status": "PASS",
+      "started_utc": "2026-10-18T08:47:11.651081+00:00",
+      "finished_utc": "2026-10-18T08:48:22.995838+00:00",
+      "source_commit": "7036bdbdc5225c8bef6d644b892ae08d6e644860",
+      "source_sha256": {
+        "http2/server.go": "5006f440d90df9f0fdd3980b41ba920f761144b8429a350465623c7ebeee146f",
+        "http2/writesched_proxy_feedback.go": "5e0d0a70399ad10306ae59c60a60d5982201af05661961c8da484086c80b7ddd",
+        "http2/writesched_proxy_feedback_test.go": "6754e315cdf6924e8d802a588e82c98ab0c37309967cbd04131ce9a6148854c5",
+        "http2/proxy_slow_feedback_tls_test.go": "3d16a11e7f8b39233675ed728fae1002c3269184516948ff133668ad86b5f1b8",
+        "PCS-SLOW-WRITE-FEEDBACK.md": "afb051dc7c75ba31d79c818f2defb8a14f50ac3e992c0b2e69f1c4f00dfd1914"
+      },
+      "plan_sha256": "177089e9f558fdf69f320cdce15a83ae652337095532637d8e541041a2950999",
+      "runner_sha256": "dbbb879fab3d2cb50d9521edb5d30067308320870ab8be591bcb30b2c47e83ec",
+      "builder_image": "sha256:9a047b56e53e74da852631ba1d23e186d0ab7cb4013a4ddb243e61cf1d7f0af7",
+      "command": "go test -race -p 1 -mod=readonly -count=1 -timeout=90s -run ^TestProxySlowWrite -v ./http2",
+      "actual_limits": {
+        "NanoCpus": 350000000,
+        "Memory": 536870912,
+        "MemorySwap": 536870912,
+        "NetworkMode": "none",
+        "PidsLimit": 256
+      },
+      "disk_min_free_bytes": 2079641600,
+      "container_state": {
+        "Running": false,
+        "Status": "exited",
+        "ExitCode": 0,
+        "OOMKilled": false,
+        "StartedAt": "2026-10-18T08:47:12.394478971Z",
+        "FinishedAt": "2026-10-18T08:48:22.148637855Z",
+        "Error": ""
+      },
+      "owned_cleanup": true,
+      "container_absence_verified": true,
+      "volume_absence_verified": [],
+      "output_observations": {
+        "go_version_match": true,
+        "target_test_started": true,
+        "target_test_pass_line_seen": true,
+        "interpretation": "Missing test output does not distinguish compilation, link or pre-test startup. Only command exit0 plus guards yields PASS.",
+        "expected_top_level_tests": [
+          "TestProxySlowWriteThresholdAndExpiry",
+          "TestProxySlowWriteSingleStreamRefreshErrorAndClosed",
+          "TestProxySlowWriteActualCompletionExcludesHandoff",
+          "TestProxySlowWriteDefaultOffAndControlClock",
+          "TestProxySlowWriteNoFailedOrClosedCallback",
+          "TestProxySlowWritePartialFIFOAndCompletion",
+          "TestProxySlowWriteFlowPeerLimitAndClose",
+          "TestProxySlowWritePreservesFairnessAndGlobalControl",
+          "TestProxySlowWriteFeedbackLateDATARealTLS"
+        ],
+        "passed_top_level_tests": [
+          "TestProxySlowWriteThresholdAndExpiry",
+          "TestProxySlowWriteSingleStreamRefreshErrorAndClosed",
+          "TestProxySlowWriteActualCompletionExcludesHandoff",
+          "TestProxySlowWriteDefaultOffAndControlClock",
+          "TestProxySlowWriteNoFailedOrClosedCallback",
+          "TestProxySlowWritePartialFIFOAndCompletion",
+          "TestProxySlowWriteFlowPeerLimitAndClose",
+          "TestProxySlowWritePreservesFairnessAndGlobalControl",
+          "TestProxySlowWriteFeedbackLateDATARealTLS"
+        ]
+      },
+      "log_sha256": "4f7b73069a1bb2c9e4c2ae727d32e96ad5892e543c3c4a281d5bb315cc67a0b3",
+      "go_test_package_seconds": 1.703
+    }
+  },
+  "prior_fixture_stop": {
+    "status": "FAIL",
+    "started_utc": "2026-10-18T08:37:07.472178+00:00",
+    "finished_utc": "2026-10-18T08:38:25.441687+00:00",
+    "error_class": "AssertionError",
+    "owned_cleanup": true,
+    "log_sha256": "b7cfe791ed870eed619510fafaabb898490c331be7a998a66b06f6f362f62631",
+    "cause": "Running disk guard inferred from unique remaining assertion in observed control flow; exact trigger free bytes were not captured. No target test output; not a proxy correctness failure.",
+    "resolution": "Removed exactly548 unused regenerable Go build cache files after identity and no-reference checks;1.487GB reclaimed. v2 retains600MiB running floor, raises start guard to1GiB, records actual disk/state/stage/failure; original failure retained."
+  },
+  "limits": [
+    "Nine targeted tests only; full http2/Caddy integration and security regression remain pending.",
+    "TLS uses a real trusted certificate and real sockets, but seed duration comes from an injected clock; receive order only, no measured latency gain.",
+    "Both same-build policy OFF cost and policy OFF-to-ON real-clock network acceptance remain pending.",
+    "Prior88 fixed-quantum trials remain HOLD; these targeted tests do not override them."
+  ]
+}

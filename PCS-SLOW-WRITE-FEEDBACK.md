@@ -1,8 +1,11 @@
 # Opt-in slow-write DATA quantum candidate
 
-Status: static candidate only. No build, functional test, race test, benchmark,
-network experiment, source publication, or production deployment has run for this
-candidate. Earlier fixed-quantum experiments (88 rounds, HOLD) remain unchanged.
+Status: nine targeted tests passed in normal and race modes on 2026-10-18
+(08:45:20–08:46:52 and 08:47:11–08:48:22 UTC). The exact tested runtime
+commit is `7036bdb`; [results and complete test logs](docs/results/slow-write-feedback-20261018/summary.json)
+include the earlier disk-guard interruption. Full integration, performance
+acceptance and production deployment remain pending. Earlier fixed-quantum
+experiments (88 rounds, HOLD) remain unchanged.
 
 Base: `19484587`. The only runtime changes are `http2/server.go` and the new
 `http2/writesched_proxy_feedback.go`. Existing fixed 0/16384 constructors retain
@@ -43,7 +46,7 @@ shared path. Therefore default-off cost must be measured; it is not claimed zero
 The opt-in wrapper has bounded per-connection state and creates no per-packet log,
 background goroutine, timer or policy allocation per completion.
 
-## Validation prepared, not executed
+## Targeted validation and remaining acceptance
 
 Eight deterministic unit tests cover threshold/expiry nanosecond boundaries,
 single-to-multiple streams, successful/failed repeated flush refresh, closed

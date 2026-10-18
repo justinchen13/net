@@ -1,0 +1,30 @@
+go version go1.25.6 linux/amd64
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_at_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful data completion triggered pressure=true; six open streams; late 578B complete after 4096 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_flush_at_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful flush completion triggered pressure=true; six open streams; late 578B complete after 4096 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+=== RUN   TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_below_threshold
+    proxy_slow_feedback_tls_test.go:279: verified TLS; real successful data completion triggered pressure=false; six open streams; late 578B complete after 65536 bulk bytes; all SHA/END_STREAM verified; fake clock only, no latency claim
+--- PASS: TestProxySlowWriteFeedbackLateDATARealTLS (0.60s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_at_threshold (0.30s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_flush_at_threshold (0.11s)
+    --- PASS: TestProxySlowWriteFeedbackLateDATARealTLS/successful_DATA_below_threshold (0.18s)
+=== RUN   TestProxySlowWriteThresholdAndExpiry
+--- PASS: TestProxySlowWriteThresholdAndExpiry (0.00s)
+=== RUN   TestProxySlowWriteSingleStreamRefreshErrorAndClosed
+--- PASS: TestProxySlowWriteSingleStreamRefreshErrorAndClosed (0.00s)
+=== RUN   TestProxySlowWriteActualCompletionExcludesHandoff
+--- PASS: TestProxySlowWriteActualCompletionExcludesHandoff (0.00s)
+=== RUN   TestProxySlowWriteDefaultOffAndControlClock
+--- PASS: TestProxySlowWriteDefaultOffAndControlClock (0.00s)
+=== RUN   TestProxySlowWriteNoFailedOrClosedCallback
+--- PASS: TestProxySlowWriteNoFailedOrClosedCallback (0.00s)
+=== RUN   TestProxySlowWritePartialFIFOAndCompletion
+--- PASS: TestProxySlowWritePartialFIFOAndCompletion (0.00s)
+=== RUN   TestProxySlowWriteFlowPeerLimitAndClose
+--- PASS: TestProxySlowWriteFlowPeerLimitAndClose (0.00s)
+=== RUN   TestProxySlowWritePreservesFairnessAndGlobalControl
+--- PASS: TestProxySlowWritePreservesFairnessAndGlobalControl (0.00s)
+PASS
+ok  	golang.org/x/net/http2	1.703s
