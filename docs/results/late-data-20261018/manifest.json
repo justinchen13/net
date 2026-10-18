@@ -1,0 +1,21 @@
+{
+  "status": "FROZEN_CORRECTNESS_CHECK",
+  "frozen_utc": "2026-10-18T07:49:13.121136+00:00",
+  "image": "sha256:9a047b56e53e74da852631ba1d23e186d0ab7cb4013a4ddb243e61cf1d7f0af7",
+  "base": "a198b38279b0f61c6bdd546a9b920668a4ce30c1",
+  "source": "/root/proxy-source-lab/net-data-late-arrival-20261018",
+  "test_sha256": "a1190b58033d83dc2c20a22390561171f89b153ec0846a27114285bc60d73027",
+  "runner_sha256": "ea6fc7cf303cf79dfddfb283611f3eeffd7ef721226f4dd83b5e034bc3f6707d",
+  "command": "go test -p 1 -mod=readonly -count=1 -timeout=60s -run '^TestProxyDataArrivingAfterSelectionTLS$' -v ./http2",
+  "worktree_status": "?? http2/proxy_late_data_tls_test.go\n",
+  "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "limits": {
+    "cpu": 0.35,
+    "memory": 536870912,
+    "memory_swap": 536870912,
+    "network": "none",
+    "polling_deadline_seconds": 240,
+    "deadline_semantics": "soft polling bound plus inspect/cleanup timeouts; Go test itself has60s timeout after compilation"
+  },
+  "question": "Late competitor cannot preempt active frame; complete verified-TLS receive ordering differs between existing q0 and q16K. No throughput or elapsed-latency acceptance."
+}

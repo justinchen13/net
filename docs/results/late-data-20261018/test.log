@@ -1,0 +1,10 @@
+=== RUN   TestProxyDataArrivingAfterSelectionTLS
+=== RUN   TestProxyDataArrivingAfterSelectionTLS/quantum_0
+    proxy_late_data_tls_test.go:230: verified TLS; six open streams; late 578B payload complete after 65536 bulk bytes; all stream SHA256 and END_STREAM verified; no latency claim
+=== RUN   TestProxyDataArrivingAfterSelectionTLS/quantum_16384
+    proxy_late_data_tls_test.go:230: verified TLS; six open streams; late 578B payload complete after 16384 bulk bytes; all stream SHA256 and END_STREAM verified; no latency claim
+--- PASS: TestProxyDataArrivingAfterSelectionTLS (0.09s)
+    --- PASS: TestProxyDataArrivingAfterSelectionTLS/quantum_0 (0.07s)
+    --- PASS: TestProxyDataArrivingAfterSelectionTLS/quantum_16384 (0.02s)
+PASS
+ok  	golang.org/x/net/http2	0.111s

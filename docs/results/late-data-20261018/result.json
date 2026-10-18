@@ -1,0 +1,30 @@
+{
+  "started_utc": "2026-10-18T07:49:13.126374+00:00",
+  "status": "PASS",
+  "manifest_sha256": "407dbca9296eeac8950c25424b74b72b319f70afe8856de6e5826a78ea427f00",
+  "host_config": {
+    "NanoCpus": 350000000,
+    "Memory": 536870912,
+    "MemorySwap": 536870912,
+    "NetworkMode": "none",
+    "PidsLimit": 256
+  },
+  "container_state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": false,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 0,
+    "Error": "",
+    "StartedAt": "2026-10-18T07:49:13.690679902Z",
+    "FinishedAt": "2026-10-18T07:50:39.668455595Z"
+  },
+  "owned_cleanup": true,
+  "log_sha256": "4714628975b354135a0674c87ccf12efe183fa05cbe51924099b57a89b1bc6cb",
+  "finished_utc": "2026-10-18T07:50:40.290271+00:00",
+  "elapsed_seconds": 87.16395332291722,
+  "disk_free_bytes": 831148032
+}
