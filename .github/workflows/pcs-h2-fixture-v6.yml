@@ -1,0 +1,52 @@
+name: Build frozen HTTP2 v6 fixture
+
+on:
+  push:
+    branches: [pcs/ci-h2-fixture-v6]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pcs-ci-h2-fixture-v6
+  cancel-in-progress: false
+
+jobs:
+  fixture:
+    if: github.repository == 'justinchen13/net' && github.ref == 'refs/heads/pcs/ci-h2-fixture-v6'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      CGO_ENABLED: '0'
+      GOOS: linux
+      GOARCH: amd64
+      GOAMD64: v1
+      GOTOOLCHAIN: local
+      GOWORK: 'off'
+      GOMAXPROCS: '1'
+      GOMEMLIMIT: 320MiB
+    steps:
+      - name: Check out the dedicated branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # Allows exact base-source comparison, without fetching in scripts.
+          persist-credentials: false
+      - name: Select the exact Go toolchain
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.25.6'
+          architecture: x64
+          check-latest: false
+          cache: false
+      - name: Check frozen inputs, test enumeration, and build fixture
+        run: python3 tools/pcs-h2-fixture-v6/build.py
+      - name: Retain build evidence and fixture
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: h2-fixture-v6-linux-amd64-${{ github.sha }}-${{ github.run_attempt }}
+          path: dist/pcs-h2-fixture-v6/
+          retention-days: 7
+          if-no-files-found: error
+          compression-level: 0
+          include-hidden-files: false

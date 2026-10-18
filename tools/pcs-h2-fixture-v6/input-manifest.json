@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "scope": "Build only the frozen synthetic HTTP2 v6 fixture and its 15 pure enumeration cases; never run its network main or build/deploy a proxy.",
+  "source_manifest_sha256": "36597e22271bb582da15b547c0973734d45f97f328de9d8e6b20562b81979eeb",
+  "net_base_commit": "ca43f763b381b813d5fb2c1344a332a0441f91ab",
+  "go_version": "go1.25.6",
+  "goos": "linux",
+  "goarch": "amd64",
+  "cgo_enabled": "0",
+  "expected_top_test": "TestUploadDelayEnumeration",
+  "expected_table_cases": 15,
+  "source_sha256": {
+    "fixture.go": "347634b2b8888cd9c2c8bc25b997bc3c3be33eb2fb7e7189c822546cdbc2f9ec",
+    "fixture_test.go": "dd18295f7cc09459e3dbe0321fef844a59633d4c4bdca8e588e37eaa319283d5"
+  },
+  "module_sha256": {
+    "go.mod": "b330deccc42ce9bc255f1f8ed217fc6e7db3e0418a882797d48f9ff934fc269e",
+    "go.sum": "c2cc3de27a58160e3e83834d006ebaec306404defc5a652d33742bdd144d48b9"
+  },
+  "test_flags": [
+    "-json",
+    "-p=1",
+    "-count=1",
+    "-timeout=20s",
+    "-mod=readonly"
+  ],
+  "build_flags": [
+    "-p=1",
+    "-mod=readonly",
+    "-buildvcs=false",
+    "-trimpath"
+  ],
+  "GOMAXPROCS": "1",
+  "GOMEMLIMIT": "320MiB",
+  "GOTOOLCHAIN": "local",
+  "GOWORK": "off",
+  "GOAMD64": "v1",
+  "ci_branch": "pcs/ci-h2-fixture-v6",
+  "ci_repository": "justinchen13/net",
+  "runtime_execution_authorized": false
+}
