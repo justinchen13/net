@@ -116,6 +116,15 @@ type Server struct {
 	// Nil permits the policy whenever its timeout is positive.
 	SendCreditStallEnabled func(context.Context) bool
 
+	// MaxConcurrentSendCreditStallDrains bounds connections retired by the
+	// send-credit policy that have not yet exited ServeConn. Nonpositive
+	// values use a finite default of 16; they never mean unlimited.
+	// The limit is fixed on first enabled ServeConn use. Configure all fields
+	// before use; concurrent configuration or copying during use is unsupported.
+	// Copies made before first use have independent quotas; copies made after
+	// initialization share the quota pointer and its fixed limit.
+	MaxConcurrentSendCreditStallDrains int
+
 	// MaxHandlers limits the number of http.Handler ServeHTTP goroutines
 	// which may run at a time over all connections.
 	// Negative or zero no limit.
@@ -202,6 +211,11 @@ type Server struct {
 	// so that we don't embed a Mutex in this struct, which will make the
 	// struct non-copyable, which might break some callers.
 	state *serverInternalState
+
+	// Separate from state: direct ServeConn must share this quota, and a later
+	// ConfigureServer must not replace it. Access during initialization is
+	// protected by sendCreditDrainInitMu; connections keep a fixed pointer.
+	sendCreditDrains *sendCreditDrainQuota
 }
 
 type serverInternalState struct {
@@ -483,6 +497,10 @@ func (s *Server) serveConn(c net.Conn, opts *ServeConnOpts, newf func(*serverCon
 		pushEnabled:                 true,
 		sawClientPreface:            opts.SawClientPreface,
 	}
+	sc.sendCreditDrainQuota = s.sendCreditDrainQuotaForConn()
+	// This outer defer runs after serve's connection/stream cleanup, including
+	// I/O-error and panic exits. No stream or policy-reset hook releases it.
+	defer sc.releaseSendCreditDrainLease()
 	if newf != nil {
 		newf(sc)
 	}
@@ -613,7 +631,9 @@ func (sc *serverConn) rejectConn(err ErrCode, debug string) {
 }
 
 type serverConn struct {
-	observationReader         *ServerReadState // immutable after reader startup
+	sendCreditDrainQuota      *sendCreditDrainQuota // fixed at connection creation
+	sendCreditDrainLease      bool                  // owned only by this serve goroutine
+	observationReader         *ServerReadState      // immutable after reader startup
 	observationSequence       uint64
 	observationWriteAt        time.Time
 	observationWriteKind      string
@@ -1578,6 +1598,11 @@ func (sc *serverConn) wroteFrame(res frameWriteResult) {
 		case handlerPanicRST:
 			sc.closeStream(wr.stream, errHandlerPanicked)
 		}
+	}
+
+	if goaway, ok := wr.write.(*writeGoAway); ok && res.err == nil && goaway.code == ErrCodeNo && sc.sendCreditDrainLease {
+		// Local Flush completion, not proof of peer receipt.
+		sc.observe("send_credit_goaway_written")
 	}
 
 	// Inspect the completed frame before replyToWriter clears wr.write for

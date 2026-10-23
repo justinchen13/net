@@ -155,6 +155,7 @@ func (sc *serverConn) updateSendCreditStall() {
 		p.nonce[0] ^= 1
 	}
 	s.probe = p
+	sc.observe("send_credit_probe_queued")
 	sc.writeFrame(FrameWriteRequest{write: &writeSendCreditPing{generation: p.generation, nonce: p.nonce}})
 }
 
@@ -175,6 +176,7 @@ func (sc *serverConn) sendCreditTimerFired() {
 		// The independent ACK budget expired. Keep tried=true for this stall;
 		// no GOAWAY, no hard close, and no mutation of normal health timers.
 		s.probe = nil
+		sc.observe("send_credit_probe_timeout")
 		return
 	}
 	sc.updateSendCreditStall()
@@ -226,6 +228,7 @@ func (sc *serverConn) noteSendCreditFrameWritten(wr FrameWriteRequest, err error
 	} // existing wroteFrame handles the connection error
 	current.writing = false
 	current.written = true
+	sc.observe("send_credit_probe_written")
 	if current.acknowledged {
 		sc.finishSendCreditProbe()
 	} else {
@@ -242,7 +245,11 @@ func (sc *serverConn) acknowledgeSendCreditProbe(nonce [8]byte) bool {
 		// select may pick a late ACK before the already-due timer delivery.
 		s.stopTimer()
 		s.probe = nil
+		sc.observe("send_credit_probe_timeout")
 		return true
+	}
+	if !s.probe.acknowledged {
+		sc.observe("send_credit_probe_ack")
 	}
 	s.probe.acknowledged = true
 	if s.probe.written {
@@ -262,6 +269,11 @@ func (sc *serverConn) finishSendCreditProbe() {
 	s.stopTimer()
 	s.probe = nil
 	if eligible {
+		if !sc.reserveSendCreditDrainLease() {
+			sc.observe("send_credit_drain_limit")
+			return
+		}
+		sc.observe("send_credit_drain_queued")
 		// Serve-owned path: never self-send to serveMsgCh. NO_ERROR retires
 		// this connection for future streams; old streams may remain forever.
 		sc.startGracefulShutdownInternal()
