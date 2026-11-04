@@ -52,6 +52,14 @@ real-client recovery, and performance acceptance remain separate gates. The
 candidate is not deployed. Integration evidence is maintained in PCS under
 `caddy/experiments/results/20261105-approved-plan/`.
 
+The first follow-up CI ordinary suite exposed an existing direct-ServeConn
+fixture isolation error: its fallback error-channel pool retained channels from
+an earlier `synctest` bubble. A two-P, 20-round reproduction fails before fixture
+isolation. The serial drain tests now discard that test pool before and after
+each bubble, preserving the unconfigured Server and shared-quota scenarios.
+Twenty rounds (220 cases including subtests) and the full two-P ordinary suite
+(678 cases including subtests) pass afterward. Production pooling is unchanged.
+
 ## Executed validation
 
 - The shared GOAWAY Flush fix: old production writer reproduces two expected

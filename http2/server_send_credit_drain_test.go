@@ -74,6 +74,18 @@ func (c *creditDrainTestConn) Close() error {
 	return err
 }
 
+// These tests are serial and use direct ServeConn as well as ConfigureServer.
+// The direct path uses the package fallback error-channel pool. Discard its
+// previous bubble's channels before entering the next bubble, without changing
+// the tested Server's unconfigured state or its shared retirement quota.
+func creditDrainSynctest(t *testing.T, f func(testing.TB)) {
+	t.Helper()
+	reset := func() { errChanPool = sync.Pool{New: func() any { return make(chan error, 1) }} }
+	reset()
+	defer reset() // do not leave bubble-owned channels for later ordinary tests
+	synctestTest(t, f)
+}
+
 // This native-frame fixture shares the exact *Server across connections. It
 // uses the same serveConn implementation and in-memory connection as
 // newServerTester, without allocating a new Server for every connection.
@@ -141,7 +153,7 @@ func TestProxySendCreditDrainNativeLeaseLifetime(t *testing.T) {
 			name = "configured"
 		}
 		t.Run(name, func(t *testing.T) {
-			synctestTest(t, func(t testing.TB) {
+			creditDrainSynctest(t, func(t testing.TB) {
 				var events creditDrainEvents
 				shared := &Server{SendCreditStallTimeout: creditTestTimeout, MaxConcurrentSendCreditStallDrains: 1,
 					ReadIdleTimeout: time.Hour, PingTimeout: time.Second, WriteByteTimeout: 10 * time.Second,
@@ -237,7 +249,7 @@ func TestProxySendCreditDrainNativeLeaseLifetime(t *testing.T) {
 func TestProxySendCreditDrainObservationGatesAndTimeout(t *testing.T) {
 	for _, name := range []string{"enabled", "observer_hidden", "policy_off"} {
 		t.Run(name, func(t *testing.T) {
-			synctestTest(t, func(t testing.TB) {
+			creditDrainSynctest(t, func(t testing.TB) {
 				var events creditDrainEvents
 				enabled := name != "policy_off"
 				st, _ := newCreditTestStall(t, enabled, func(s *Server) {
@@ -269,7 +281,7 @@ func TestProxySendCreditDrainObservationGatesAndTimeout(t *testing.T) {
 }
 
 func TestProxySendCreditDrainGoAwayWriteErrorReleases(t *testing.T) {
-	synctestTest(t, func(t testing.TB) {
+	creditDrainSynctest(t, func(t testing.TB) {
 		s := &Server{SendCreditStallTimeout: creditTestTimeout, MaxConcurrentSendCreditStallDrains: 1,
 			ReadIdleTimeout: time.Hour, PingTimeout: time.Second, WriteByteTimeout: time.Second,
 			NewWriteScheduler: NewProxyWriteScheduler}
