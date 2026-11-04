@@ -22,13 +22,35 @@ completion must both be observed while eligibility remains before the internal
 NO_ERROR GOAWAY path runs. ACK may arrive before the completion notification.
 No ACK abandons that generation's one probe without a new hard-close deadline.
 An actual PING Write/Flush I/O error still follows the existing connection-error
-close path. WINDOW_UPDATE, DATA progress, cancellation or lost eligibility
+close path. WINDOW_UPDATE, DATA progress, cancellation of a pending DATA writer or lost eligibility
 invalidate the generation; another active frame during a probe conservatively
 invalidates it too. The probe's own successful Flush is exempt.
 
 Existing CONNECTs are not migrated, replayed or canceled by graceful retirement.
 They resume only if the peer provides real credit. GOAWAY does not rescue an
 already stalled old tunnel or prove why the peer withheld credit.
+
+## Unrelated stream churn follow-up (2026-11-05)
+
+The first real Shadowrocket fault-injection runs established two queued DATA
+streams and zero connection credit, but did not produce a policy probe. Adding
+an authenticated, ACL-denied empty CONNECT every 200 ms to the previously passing
+CLI reproduced the same 25-second no-GOAWAY failure. Closing those unrelated
+streams, or rejecting traffic on an already-closed stream, restarted the stall
+generation even though neither blocked writer made progress.
+
+The follow-up resets on stream cancellation only when that stream has pending
+DATA. Default-off behavior, DATA and WINDOW_UPDATE invalidation, active-frame
+invalidation during a probe, fresh ACK/Flush ordering, and drain quotas retain
+their existing rules. In particular, this does not waive the idle-writer check
+or claim that a probe always survives concurrent control writes.
+
+Two native H2-frame regressions fail before the change and pass afterward.
+The initial targeted selection passes 39 tests including subtests; the complete
+ordinary HTTP2/HPACK run passes 678 including subtests. Race, paired binary,
+real-client recovery, and performance acceptance remain separate gates. The
+candidate is not deployed. Integration evidence is maintained in PCS under
+`caddy/experiments/results/20261105-approved-plan/`.
 
 ## Executed validation
 

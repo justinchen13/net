@@ -73,6 +73,10 @@ func newCreditTestStall(t testing.TB, enabled bool, options ...func(*Server)) (*
 	done := make(chan error, 4)
 	st := newServerTester(t, func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/octet-stream")
+		if r.Host == "empty.test" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
 		if r.Host == "fill.test" {
 			_, err := w.Write(bytes.Repeat([]byte{'f'}, initialWindowSize))
 			if err != nil {
@@ -207,6 +211,45 @@ func TestProxySendCreditStallNativeDrain(t *testing.T) {
 	}
 }
 
+func TestProxySendCreditStallUnrelatedStreamChurn(t *testing.T) {
+	for _, kind := range []string{"completed_empty_stream", "reset_closed_stream"} {
+		t.Run(kind, func(t *testing.T) {
+			synctestTest(t, func(t testing.TB) {
+				st, done := newCreditTestStall(t, true)
+				last := uint32(5)
+				for i := uint32(0); i < 6; i++ {
+					if kind == "completed_empty_stream" {
+						last = 7 + 2*i
+						creditTestRequest(st, last, "empty.test")
+						st.wantHeaders(wantHeader{streamID: last, endStream: true})
+					} else {
+						// The filler has already ended. Rejecting an empty DATA
+						// frame on it cannot advance either stalled DATA stream.
+						st.writeData(1, false, nil)
+						st.wantRSTStream(1, ErrCodeStreamClosed)
+					}
+					st.advance(500 * time.Millisecond)
+				}
+				probe := readFrame[*PingFrame](t, st)
+				if probe.IsAck() {
+					t.Fatal("expected independent policy probe")
+				}
+				st.sync()
+				st.writePing(true, probe.Data)
+				st.wantGoAway(last, ErrCodeNo)
+				st.wantIdle()
+				st.writeWindowUpdate(0, 2*creditTestBodySize)
+				creditTestDrain(st, map[uint32][]byte{3: bytes.Repeat([]byte{'d'}, creditTestBodySize), 5: bytes.Repeat([]byte{'d'}, creditTestBodySize)})
+				for i := 0; i < 2; i++ {
+					if err := <-done; err != nil {
+						t.Fatalf("old stream did not resume: %v", err)
+					}
+				}
+			})
+		})
+	}
+}
+
 func TestProxySendCreditStallNoACKDoesNotClose(t *testing.T) {
 	synctestTest(t, func(t testing.TB) {
 		st, _ := newCreditTestStall(t, true, func(s *Server) { s.ReadIdleTimeout = time.Hour })
@@ -259,6 +302,24 @@ func creditTestState() *serverConn {
 		sc.streams[id] = st
 	}
 	return sc
+}
+
+func TestProxySendCreditResetOnlyPendingWriter(t *testing.T) {
+	sc := creditTestState()
+	s := sc.sendCreditStall
+	defer s.stopTimer()
+	p := &sendCreditProbe{generation: s.generation, nonce: [8]byte{1}}
+	s.probe = p
+	since, generation := s.since, s.generation
+	sc.resetSendCreditForStream(nil)
+	sc.resetSendCreditForStream(&stream{id: 7, sc: sc, state: stateOpen})
+	if s.since != since || s.generation != generation || s.probe != p {
+		t.Fatal("unrelated stream invalidated the stalled writers")
+	}
+	sc.resetSendCreditForStream(sc.streams[3])
+	if !s.since.IsZero() || s.generation != generation+1 || s.probe != nil {
+		t.Fatal("pending writer cancellation retained the old generation")
+	}
 }
 
 func TestProxySendCreditStallEligibility(t *testing.T) {

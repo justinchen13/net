@@ -78,6 +78,16 @@ func (s *sendCreditStallState) reset() {
 	s.probe = nil
 }
 
+// A stream without pending DATA cannot be one of the stalled writers. Its
+// completion, or an error on an already-closed stream, must not restart their
+// eligibility interval. Canceling a pending writer still invalidates the probe;
+// the existing active-frame checks remain responsible for writer/ACK ordering.
+func (sc *serverConn) resetSendCreditForStream(st *stream) {
+	if sc.sendCreditStall != nil && st != nil && st.sendCreditPending > 0 {
+		sc.sendCreditStall.reset()
+	}
+}
+
 // No observation callback or diagnostic sampling is required for eligibility.
 // A kernel send queue may still contain data even when writingFrame is false.
 func (sc *serverConn) sendCreditDataEligible() bool {

@@ -1728,9 +1728,7 @@ func (sc *serverConn) shutDownIn(d time.Duration) {
 
 func (sc *serverConn) resetStream(se StreamError) {
 	sc.serveG.check()
-	if sc.sendCreditStall != nil {
-		sc.sendCreditStall.reset()
-	}
+	sc.resetSendCreditForStream(sc.streams[se.StreamID])
 	sc.writeFrame(FrameWriteRequest{write: se})
 	if st, ok := sc.streams[se.StreamID]; ok {
 		st.resetQueued = true
@@ -1943,8 +1941,8 @@ func (sc *serverConn) closeStream(st *stream, err error) {
 		panic(fmt.Sprintf("invariant; can't close stream in state %v", st.state))
 	}
 	if sc.sendCreditStall != nil {
+		sc.resetSendCreditForStream(st)
 		st.sendCreditPending = 0
-		sc.sendCreditStall.reset()
 	}
 	st.state = stateClosed
 	if st.readDeadline != nil {
