@@ -89,9 +89,12 @@ type writeGoAway struct {
 }
 
 func (p *writeGoAway) writeFrame(ctx writeContext) error {
-	err := ctx.Framer().WriteGoAway(p.maxStreamID, p.code, nil)
-	ctx.Flush() // ignore error: we're hanging up on them anyway
-	return err
+	if err := ctx.Framer().WriteGoAway(p.maxStreamID, p.code, nil); err != nil {
+		return err
+	}
+	// A graceful GOAWAY leaves existing streams alive. A buffered frame is
+	// not complete until Flush succeeds; propagate its error to wroteFrame.
+	return ctx.Flush()
 }
 
 func (*writeGoAway) staysWithinBuffer(max int) bool { return false } // flushes

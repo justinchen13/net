@@ -102,6 +102,29 @@ type Server struct {
 	// actually flushed. Use with a nonzero WriteByteTimeout to bound a stuck writer.
 	PingTimeoutAfterWrite bool
 
+	// SendCreditStallTimeout enables an experimental mitigation for future
+	// requests when at least two positive-DATA streams have stream credit but
+	// the shared connection has none. Nonpositive disables all policy timers.
+	// This duration measures continuous eligible credit stall without DATA
+	// progress; ordinary control writes do not reset it. Probe and drain each
+	// require an idle writer. Only a fresh ACK after this separate PING has
+	// flushed may initiate graceful NO_ERROR drain.
+	// An unanswered policy PING never closes or cancels existing streams.
+	SendCreditStallTimeout time.Duration
+	// SendCreditStallEnabled optionally restricts the policy (for example, to
+	// authenticated proxies). It runs on the serve loop and must not block.
+	// Nil permits the policy whenever its timeout is positive.
+	SendCreditStallEnabled func(context.Context) bool
+
+	// MaxConcurrentSendCreditStallDrains bounds connections retired by the
+	// send-credit policy that have not yet exited ServeConn. Nonpositive
+	// values use a finite default of 16; they never mean unlimited.
+	// The limit is fixed on first enabled ServeConn use. Configure all fields
+	// before use; concurrent configuration or copying during use is unsupported.
+	// Copies made before first use have independent quotas; copies made after
+	// initialization share the quota pointer and its fixed limit.
+	MaxConcurrentSendCreditStallDrains int
+
 	// MaxHandlers limits the number of http.Handler ServeHTTP goroutines
 	// which may run at a time over all connections.
 	// Negative or zero no limit.
@@ -188,6 +211,11 @@ type Server struct {
 	// so that we don't embed a Mutex in this struct, which will make the
 	// struct non-copyable, which might break some callers.
 	state *serverInternalState
+
+	// Separate from state: direct ServeConn must share this quota, and a later
+	// ConfigureServer must not replace it. Access during initialization is
+	// protected by sendCreditDrainInitMu; connections keep a fixed pointer.
+	sendCreditDrains *sendCreditDrainQuota
 }
 
 type serverInternalState struct {
@@ -469,6 +497,10 @@ func (s *Server) serveConn(c net.Conn, opts *ServeConnOpts, newf func(*serverCon
 		pushEnabled:                 true,
 		sawClientPreface:            opts.SawClientPreface,
 	}
+	sc.sendCreditDrainQuota = s.sendCreditDrainQuotaForConn()
+	// This outer defer runs after serve's connection/stream cleanup, including
+	// I/O-error and panic exits. No stream or policy-reset hook releases it.
+	defer sc.releaseSendCreditDrainLease()
 	if newf != nil {
 		newf(sc)
 	}
@@ -599,7 +631,9 @@ func (sc *serverConn) rejectConn(err ErrCode, debug string) {
 }
 
 type serverConn struct {
-	observationReader         *ServerReadState // immutable after reader startup
+	sendCreditDrainQuota      *sendCreditDrainQuota // fixed at connection creation
+	sendCreditDrainLease      bool                  // owned only by this serve goroutine
+	observationReader         *ServerReadState      // immutable after reader startup
 	observationSequence       uint64
 	observationWriteAt        time.Time
 	observationWriteKind      string
@@ -616,6 +650,7 @@ type serverConn struct {
 	observationSelections     SelectionObservation
 	pingWritten               bool
 	pingTimeoutAfterWrite     bool
+	sendCreditStall           *sendCreditStallState // nil on the default-off path; serve-owned
 
 	// Immutable:
 	srv              *Server
@@ -727,6 +762,7 @@ type stream struct {
 	observationFrames       int
 	observationSelections   SelectionObservation
 	observationLastSelected time.Time
+	sendCreditPending       int64 // queued, not yet selected positive DATA; serve-owned
 
 	// immutable:
 	sc        *serverConn
@@ -1054,11 +1090,18 @@ func (sc *serverConn) serve(conf http2Config) {
 		observationTick = ticker.C
 		defer sc.observe("serve_exit")
 	}
+	var sendCreditTick <-chan time.Time
+	if sc.srv.SendCreditStallTimeout > 0 {
+		sc.sendCreditStall = &sendCreditStallState{}
+		defer sc.sendCreditStall.stopTimer()
+	}
 	lastFrameTime := time.Now()
 	loopNum := 0
 	for {
 		loopNum++
 		select {
+		case <-sendCreditTick:
+			sc.sendCreditTimerFired()
 		case <-observationTick:
 			sc.observe("sample")
 		case wr := <-sc.wantWriteFrameCh:
@@ -1126,6 +1169,11 @@ func (sc *serverConn) serve(conf http2Config) {
 			default:
 				panic(fmt.Sprintf("unexpected type %T", v))
 			}
+		}
+
+		if sc.sendCreditStall != nil {
+			sc.updateSendCreditStall()
+			sendCreditTick = sc.sendCreditStall.tick
 		}
 
 		// If the peer is causing us to generate a lot of control frames,
@@ -1390,6 +1438,9 @@ func (sc *serverConn) writeFrame(wr FrameWriteRequest) {
 				st.observationPending += wr.DataSize()
 			}
 		}
+		if sc.sendCreditStall != nil && wr.stream != nil {
+			wr.stream.sendCreditPending += int64(wr.DataSize())
+		}
 		sc.writeSched.Push(wr)
 	}
 	sc.scheduleFrameWrite()
@@ -1451,6 +1502,9 @@ func (sc *serverConn) startFrameWrite(wr FrameWriteRequest) {
 				st.observationQueued = time.Time{}
 			}
 		}
+	}
+	if sc.sendCreditStall != nil {
+		sc.noteSendCreditFrameStart(wr)
 	}
 	sc.writingFrame = true
 	sc.needsFrameFlush = true
@@ -1544,6 +1598,22 @@ func (sc *serverConn) wroteFrame(res frameWriteResult) {
 		case handlerPanicRST:
 			sc.closeStream(wr.stream, errHandlerPanicked)
 		}
+	}
+
+	if goaway, ok := wr.write.(*writeGoAway); ok && res.err == nil && goaway.code == ErrCodeNo && sc.sendCreditDrainLease {
+		// Local Flush completion, not proof of peer receipt.
+		sc.observe("send_credit_goaway_written")
+	}
+
+	// Inspect the completed frame before replyToWriter clears wr.write for
+	// frames with a done channel. Positive DATA completion resets the clock.
+	if _, policyPing := wr.write.(*writeSendCreditPing); policyPing && res.err == nil {
+		// This frame already flushed. A synthetic follow-up flush would
+		// incorrectly invalidate the probe as an unrelated active frame.
+		sc.needsFrameFlush = false
+	}
+	if sc.sendCreditStall != nil {
+		sc.noteSendCreditFrameWritten(wr, res.err)
 	}
 
 	// Reply (if requested) to unblock the ServeHTTP goroutine.
@@ -1658,6 +1728,7 @@ func (sc *serverConn) shutDownIn(d time.Duration) {
 
 func (sc *serverConn) resetStream(se StreamError) {
 	sc.serveG.check()
+	sc.resetSendCreditForStream(sc.streams[se.StreamID])
 	sc.writeFrame(FrameWriteRequest{write: se})
 	if st, ok := sc.streams[se.StreamID]; ok {
 		st.resetQueued = true
@@ -1782,6 +1853,9 @@ func (sc *serverConn) processFrame(f Frame) error {
 func (sc *serverConn) processPing(f *PingFrame) error {
 	sc.serveG.check()
 	if f.IsAck() {
+		if sc.sendCreditStall != nil && sc.acknowledgeSendCreditProbe(f.Data) {
+			return nil
+		}
 		if sc.pingSent && sc.sentPingData == f.Data {
 			// This is a response to a PING we sent.
 			sc.pingSent = false
@@ -1834,6 +1908,9 @@ func (sc *serverConn) processWindowUpdate(f *WindowUpdateFrame) error {
 			return goAwayFlowError{}
 		}
 	}
+	if sc.sendCreditStall != nil {
+		sc.sendCreditStall.reset()
+	}
 	sc.scheduleFrameWrite()
 	return nil
 }
@@ -1862,6 +1939,10 @@ func (sc *serverConn) closeStream(st *stream, err error) {
 	sc.serveG.check()
 	if st.state == stateIdle || st.state == stateClosed {
 		panic(fmt.Sprintf("invariant; can't close stream in state %v", st.state))
+	}
+	if sc.sendCreditStall != nil {
+		sc.resetSendCreditForStream(st)
+		st.sendCreditPending = 0
 	}
 	st.state = stateClosed
 	if st.readDeadline != nil {
